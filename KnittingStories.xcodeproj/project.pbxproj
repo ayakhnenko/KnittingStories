@@ -1,0 +1,471 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 55;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		00329C0328F96CB900216444 /* ImagePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00329C0228F96CB900216444 /* ImagePickerView.swift */; };
+		00329C0728FE8C7F00216444 /* EditProjectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00329C0628FE8C7F00216444 /* EditProjectView.swift */; };
+		00329C0928FE8F6D00216444 /* AddProjectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00329C0828FE8F6D00216444 /* AddProjectView.swift */; };
+		00329C0B28FE996300216444 /* Project+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00329C0A28FE996300216444 /* Project+Extension.swift */; };
+		0039CE8A29476B10005E7C5F /* AddYarnProjView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0039CE8929476B10005E7C5F /* AddYarnProjView.swift */; };
+		0039CE8C295469CD005E7C5F /* YarnProj.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0039CE8B295469CD005E7C5F /* YarnProj.swift */; };
+		003F915B28F2BF5C0040BD12 /* KnittingStoriesApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 003F915A28F2BF5C0040BD12 /* KnittingStoriesApp.swift */; };
+		003F915D28F2BF5C0040BD12 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 003F915C28F2BF5C0040BD12 /* ContentView.swift */; };
+		003F915F28F2BF5E0040BD12 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 003F915E28F2BF5E0040BD12 /* Assets.xcassets */; };
+		003F916228F2BF5E0040BD12 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 003F916128F2BF5E0040BD12 /* Preview Assets.xcassets */; };
+		003F916B28F2BF7D0040BD12 /* KnittingStories.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 003F916928F2BF7D0040BD12 /* KnittingStories.xcdatamodeld */; };
+		003F916E28F2CF8A0040BD12 /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 003F916D28F2CF8A0040BD12 /* DataController.swift */; };
+		003F917128F2D0CE0040BD12 /* Yarn+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 003F917028F2D0CE0040BD12 /* Yarn+Extension.swift */; };
+		003F917528F2E04E0040BD12 /* YarnProj+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 003F917428F2E04E0040BD12 /* YarnProj+Extension.swift */; };
+		003F917928F2E8F10040BD12 /* YarnList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 003F917828F2E8F10040BD12 /* YarnList.swift */; };
+		003F917B28F2EBF20040BD12 /* ProjectList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 003F917A28F2EBF20040BD12 /* ProjectList.swift */; };
+		003F917D28F2ED180040BD12 /* EditYarnView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 003F917C28F2ED180040BD12 /* EditYarnView.swift */; };
+		003F918728F56BA80040BD12 /* AddYarnView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 003F918628F56BA80040BD12 /* AddYarnView.swift */; };
+		004E77572920EF4000B4BE70 /* YarnView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 004E77562920EF4000B4BE70 /* YarnView.swift */; };
+		004E775F292260A000B4BE70 /* ProjectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 004E775E292260A000B4BE70 /* ProjectView.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		00329C0228F96CB900216444 /* ImagePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerView.swift; sourceTree = "<group>"; };
+		00329C0628FE8C7F00216444 /* EditProjectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProjectView.swift; sourceTree = "<group>"; };
+		00329C0828FE8F6D00216444 /* AddProjectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddProjectView.swift; sourceTree = "<group>"; };
+		00329C0A28FE996300216444 /* Project+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Project+Extension.swift"; sourceTree = "<group>"; };
+		0039CE8929476B10005E7C5F /* AddYarnProjView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddYarnProjView.swift; sourceTree = "<group>"; };
+		0039CE8B295469CD005E7C5F /* YarnProj.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YarnProj.swift; sourceTree = "<group>"; };
+		003F915728F2BF5C0040BD12 /* KnittingStories.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KnittingStories.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		003F915A28F2BF5C0040BD12 /* KnittingStoriesApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KnittingStoriesApp.swift; sourceTree = "<group>"; };
+		003F915C28F2BF5C0040BD12 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		003F915E28F2BF5E0040BD12 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		003F916128F2BF5E0040BD12 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		003F916A28F2BF7D0040BD12 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		003F916D28F2CF8A0040BD12 /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
+		003F917028F2D0CE0040BD12 /* Yarn+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Yarn+Extension.swift"; sourceTree = "<group>"; };
+		003F917428F2E04E0040BD12 /* YarnProj+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "YarnProj+Extension.swift"; sourceTree = "<group>"; };
+		003F917828F2E8F10040BD12 /* YarnList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YarnList.swift; sourceTree = "<group>"; };
+		003F917A28F2EBF20040BD12 /* ProjectList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectList.swift; sourceTree = "<group>"; };
+		003F917C28F2ED180040BD12 /* EditYarnView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditYarnView.swift; sourceTree = "<group>"; };
+		003F918628F56BA80040BD12 /* AddYarnView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddYarnView.swift; sourceTree = "<group>"; };
+		004E77562920EF4000B4BE70 /* YarnView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YarnView.swift; sourceTree = "<group>"; };
+		004E775E292260A000B4BE70 /* ProjectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectView.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		003F915428F2BF5C0040BD12 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		0039CE8829476AEC005E7C5F /* YarnProjView */ = {
+			isa = PBXGroup;
+			children = (
+				0039CE8929476B10005E7C5F /* AddYarnProjView.swift */,
+			);
+			path = YarnProjView;
+			sourceTree = "<group>";
+		};
+		003F914E28F2BF5C0040BD12 = {
+			isa = PBXGroup;
+			children = (
+				003F915928F2BF5C0040BD12 /* KnittingStories */,
+				003F915828F2BF5C0040BD12 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		003F915828F2BF5C0040BD12 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				003F915728F2BF5C0040BD12 /* KnittingStories.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		003F915928F2BF5C0040BD12 /* KnittingStories */ = {
+			isa = PBXGroup;
+			children = (
+				003F915A28F2BF5C0040BD12 /* KnittingStoriesApp.swift */,
+				003F916F28F2D0B10040BD12 /* Extensions */,
+				003F916828F2BF6E0040BD12 /* Models */,
+				003F916C28F2CEC50040BD12 /* Views */,
+				003F915E28F2BF5E0040BD12 /* Assets.xcassets */,
+				003F916028F2BF5E0040BD12 /* Preview Content */,
+			);
+			path = KnittingStories;
+			sourceTree = "<group>";
+		};
+		003F916028F2BF5E0040BD12 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				003F916128F2BF5E0040BD12 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		003F916828F2BF6E0040BD12 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				003F916928F2BF7D0040BD12 /* KnittingStories.xcdatamodeld */,
+				003F916D28F2CF8A0040BD12 /* DataController.swift */,
+				00329C0228F96CB900216444 /* ImagePickerView.swift */,
+				0039CE8B295469CD005E7C5F /* YarnProj.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		003F916C28F2CEC50040BD12 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				0039CE8829476AEC005E7C5F /* YarnProjView */,
+				003F915C28F2BF5C0040BD12 /* ContentView.swift */,
+				004E775C2920F3E200B4BE70 /* Yarn */,
+				004E775D2920F3FB00B4BE70 /* Project */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		003F916F28F2D0B10040BD12 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				003F917028F2D0CE0040BD12 /* Yarn+Extension.swift */,
+				003F917428F2E04E0040BD12 /* YarnProj+Extension.swift */,
+				00329C0A28FE996300216444 /* Project+Extension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		004E775C2920F3E200B4BE70 /* Yarn */ = {
+			isa = PBXGroup;
+			children = (
+				003F917828F2E8F10040BD12 /* YarnList.swift */,
+				003F918628F56BA80040BD12 /* AddYarnView.swift */,
+				004E77562920EF4000B4BE70 /* YarnView.swift */,
+				003F917C28F2ED180040BD12 /* EditYarnView.swift */,
+			);
+			path = Yarn;
+			sourceTree = "<group>";
+		};
+		004E775D2920F3FB00B4BE70 /* Project */ = {
+			isa = PBXGroup;
+			children = (
+				003F917A28F2EBF20040BD12 /* ProjectList.swift */,
+				00329C0828FE8F6D00216444 /* AddProjectView.swift */,
+				004E775E292260A000B4BE70 /* ProjectView.swift */,
+				00329C0628FE8C7F00216444 /* EditProjectView.swift */,
+			);
+			path = Project;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		003F915628F2BF5C0040BD12 /* KnittingStories */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 003F916528F2BF5E0040BD12 /* Build configuration list for PBXNativeTarget "KnittingStories" */;
+			buildPhases = (
+				003F915328F2BF5C0040BD12 /* Sources */,
+				003F915428F2BF5C0040BD12 /* Frameworks */,
+				003F915528F2BF5C0040BD12 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = KnittingStories;
+			productName = KnittingStories;
+			productReference = 003F915728F2BF5C0040BD12 /* KnittingStories.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		003F914F28F2BF5C0040BD12 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1340;
+				LastUpgradeCheck = 1340;
+				TargetAttributes = {
+					003F915628F2BF5C0040BD12 = {
+						CreatedOnToolsVersion = 13.4.1;
+					};
+				};
+			};
+			buildConfigurationList = 003F915228F2BF5C0040BD12 /* Build configuration list for PBXProject "KnittingStories" */;
+			compatibilityVersion = "Xcode 13.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 003F914E28F2BF5C0040BD12;
+			productRefGroup = 003F915828F2BF5C0040BD12 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				003F915628F2BF5C0040BD12 /* KnittingStories */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		003F915528F2BF5C0040BD12 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				003F916228F2BF5E0040BD12 /* Preview Assets.xcassets in Resources */,
+				003F915F28F2BF5E0040BD12 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		003F915328F2BF5C0040BD12 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0039CE8C295469CD005E7C5F /* YarnProj.swift in Sources */,
+				003F915D28F2BF5C0040BD12 /* ContentView.swift in Sources */,
+				003F916E28F2CF8A0040BD12 /* DataController.swift in Sources */,
+				0039CE8A29476B10005E7C5F /* AddYarnProjView.swift in Sources */,
+				003F917928F2E8F10040BD12 /* YarnList.swift in Sources */,
+				00329C0328F96CB900216444 /* ImagePickerView.swift in Sources */,
+				004E775F292260A000B4BE70 /* ProjectView.swift in Sources */,
+				003F917B28F2EBF20040BD12 /* ProjectList.swift in Sources */,
+				003F917528F2E04E0040BD12 /* YarnProj+Extension.swift in Sources */,
+				003F915B28F2BF5C0040BD12 /* KnittingStoriesApp.swift in Sources */,
+				003F916B28F2BF7D0040BD12 /* KnittingStories.xcdatamodeld in Sources */,
+				00329C0728FE8C7F00216444 /* EditProjectView.swift in Sources */,
+				00329C0928FE8F6D00216444 /* AddProjectView.swift in Sources */,
+				003F917128F2D0CE0040BD12 /* Yarn+Extension.swift in Sources */,
+				004E77572920EF4000B4BE70 /* YarnView.swift in Sources */,
+				00329C0B28FE996300216444 /* Project+Extension.swift in Sources */,
+				003F918728F56BA80040BD12 /* AddYarnView.swift in Sources */,
+				003F917D28F2ED180040BD12 /* EditYarnView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		003F916328F2BF5E0040BD12 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		003F916428F2BF5E0040BD12 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		003F916628F2BF5E0040BD12 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"KnittingStories/Preview Content\"";
+				DEVELOPMENT_TEAM = 2QS28A5FPL;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = AliceYa.KnittingStories;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		003F916728F2BF5E0040BD12 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"KnittingStories/Preview Content\"";
+				DEVELOPMENT_TEAM = 2QS28A5FPL;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = AliceYa.KnittingStories;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		003F915228F2BF5C0040BD12 /* Build configuration list for PBXProject "KnittingStories" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				003F916328F2BF5E0040BD12 /* Debug */,
+				003F916428F2BF5E0040BD12 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		003F916528F2BF5E0040BD12 /* Build configuration list for PBXNativeTarget "KnittingStories" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				003F916628F2BF5E0040BD12 /* Debug */,
+				003F916728F2BF5E0040BD12 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		003F916928F2BF7D0040BD12 /* KnittingStories.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				003F916A28F2BF7D0040BD12 /* Model.xcdatamodel */,
+			);
+			currentVersion = 003F916A28F2BF7D0040BD12 /* Model.xcdatamodel */;
+			path = KnittingStories.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 003F914F28F2BF5C0040BD12 /* Project object */;
+}
