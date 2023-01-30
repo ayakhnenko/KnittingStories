@@ -30,26 +30,16 @@ struct YarnView: View {
 
     @State private var showEditYarn = false
    
-    @State private var yarnProj = YarnProj()
+    @State private var yarnProj: YarnProj?
     @State private var yarnWeightInProject: Double = 0
-  //  @State private var yarnProjArray: [YarnProj] = []
-    @State private var yarnWeightArray: [YarnProj] = []
-    
+   
     var body: some View {
         NavigationView {
             Form {
                 Section {
                     VStack(alignment: .leading) {
                         Image(uiImage: UIImage(data: yarn.image!)!)
-                            .resizable()
-                            .scaledToFit()
-                            .edgesIgnoringSafeArea(.all)
-                            .clipShape(Circle())
-                            .frame(width: 90, height: 90)
-                            .shadow(radius: 10)
-                            .overlay(Circle()
-                                .stroke(Color.gray, lineWidth: 2))
-                            .padding(15)
+                            .bigCircle
                             .onAppear {
                                 image = UIImage(data: yarn.image!)!
                             }
@@ -60,7 +50,7 @@ struct YarnView: View {
                         .bold()
                         .foregroundColor(.purple)
                         .padding()
-                    Text("Назва: \(yarn.name ?? "")")
+                    Text("Назва: \(yarn.wrappedName)")
                     Text("Склад: \(yarn.compound ?? "")")
                     Text("Колір: \(yarn.color ?? "")")
                 }
@@ -111,27 +101,16 @@ struct YarnView: View {
                             .foregroundColor(.purple)
                             .padding()
                         List {
-                            ForEach(yarnWeightArray) { yarnProj in
+                            ForEach(yarn.yarnWeightArray) { yarnProj in
                                 NavigationLink(destination: ProjectView(project: yarnProj.fromProj!)) {
                                     Image(uiImage: UIImage(data: (yarnProj.fromProj?.image)!) ?? UIImage(imageLiteralResourceName: "sheep"))
-                                        .resizable()
-                                        .scaledToFit()
-                                        .edgesIgnoringSafeArea(.all)
-                                        .clipShape(Circle())
-                                        .frame(width: 60, height: 60)
-                                        .shadow(radius: 10)
-                                        .padding(15)
+                                        .smallCircle
                                         .onAppear {
                                             image = UIImage(data: yarnProj.fromProj!.image!)!
                                         }
                                     Text("\(yarnProj.fromProj?.name ?? "") - \(yarnProj.yarnWeightInProj)г")
-//                                        .onAppear {
-//                                            name = yarnProj.fromProj?.name ?? ""
-//                                            yarnWeightInProject = yarnProj.yarnWeightInProject
-//                                        }
+
                                 }
-                            }.onAppear {
-                              //  yarnWeightArray = yarn.yarnWeightArray
                             }
                         }
                         

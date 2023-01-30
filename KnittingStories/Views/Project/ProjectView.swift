@@ -31,32 +31,37 @@ import SwiftUI
     @State private var margin: Double = 0
     @State private var imagePicker = false
     @State private var sold: Bool = false
-    @State private var yarnProjArray: [YarnProj] = []
+    @State public var yarnForProject = [YarnProj]()
     @State private var showEditProject = false
     @State private var yarnWeightInProject: Double = 0
-     @State private var yarnProj = YarnProj()
+    @State private var yarnProj: YarnProj?
     
 var project: FetchedResults<Project>.Element
-    
+     
+//     @FetchRequest(sortDescriptors: [NSSortDescriptor(keyPath: \YarnProj.fromProj , ascending: true)], animation: .default) private var yarnsForProject: FetchedResults<YarnProj>
+     
+   
+
     var body: some View {
         NavigationView {
             Form {
-                VStack(alignment: .leading) {
-                    Image(uiImage: UIImage(data: project.image!)!)
-                        .resizable()
-                        .scaledToFit()
-                        .edgesIgnoringSafeArea(.all)
-                        .clipShape(Circle())
-                        .frame(width: 90, height: 90)
-                        .shadow(radius: 10)
-                        .overlay(Circle()
-                            .stroke(Color.gray, lineWidth: 2))
-                        .padding(15)
-                        .onAppear {
-                            image = UIImage(data: project.image!)!
-                        }
+                Section {
+                    VStack(alignment: .leading) {
+                        Image(uiImage: UIImage(data: project.image!)!)
+                            .resizable()
+                            .scaledToFit()
+                            .edgesIgnoringSafeArea(.all)
+                            .clipShape(Circle())
+                            .frame(width: 90, height: 90)
+                            .shadow(radius: 10)
+                            .overlay(Circle()
+                                .stroke(Color.gray, lineWidth: 2))
+                            .padding(15)
+                            .onAppear {
+                                image = UIImage(data: project.image!)!
+                            }
+                    }
                 }
-                
                 Section {
                     Text("Загальні параметри")
                         .bold()
@@ -85,16 +90,11 @@ var project: FetchedResults<Project>.Element
                         .foregroundColor(.blue)
                     List {
                         VStack {
-                            ForEach(yarnProjArray) { yarnProj in
+                            ForEach(project.yarnForProjectArray) { yarnProj in
                                 NavigationLink(destination: YarnView(yarn: yarnProj.fromYarn!)) {
                                     HStack {
                                         Image(uiImage: UIImage(data: yarnProj.fromYarn!.image!)!)
-                                            .resizable()
-                                            .scaledToFit()
-                                            .edgesIgnoringSafeArea(.all)
-                                            .clipShape(Circle())
-                                            .frame(width: 60, height: 60)
-                                            .shadow(radius: 10)
+                                            .smallCircle
                                             .onAppear {
                                                 image = UIImage(data: yarnProj.fromYarn!.image!)!
                                             }
@@ -105,15 +105,12 @@ var project: FetchedResults<Project>.Element
                                             }
                                     }
                                 }
-                            }.onAppear {
-                                //yarnProjArray = project.yarnsProjArray
+//                            }.onAppear {
+//                                yarnForProject = project.yarnForProjectArray
                             }
                         }
-                        
                     }
-                    
-                    
-                    if project.forSale {
+                   if forSale {
                         Section {
                             Text("Параметри для продажу")
                                 .bold()
@@ -128,14 +125,13 @@ var project: FetchedResults<Project>.Element
                             Text("Вартість доставки: \(project.deliveryCost)")
                             Text("Загальні витрати: \(project.additExpense)")
                             Text("Прибуток: \(project.margin)")
-                            
                         }
                     }
                 }
             }
         }.toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    Button {  showEditProject.toggle()
+                    Button { showEditProject.toggle()
                     } label: {
                         Text("Edit")
                     }

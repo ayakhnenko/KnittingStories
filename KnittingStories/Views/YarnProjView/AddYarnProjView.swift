@@ -8,123 +8,96 @@
 import SwiftUI
 
 struct AddYarnProjView: View {
-
+    
     @Environment(\.managedObjectContext) var moc
     @Environment(\.dismiss) var dismiss
-
+    
+   
+    
     @FetchRequest(sortDescriptors: [NSSortDescriptor(keyPath: \Yarn.date, ascending: true)], animation: .default) private var yarns: FetchedResults<Yarn>
     @FetchRequest(sortDescriptors: [NSSortDescriptor(keyPath: \Project.finishDate, ascending: true)]) var projects: FetchedResults<Project>
-
+   
     @State private var fromYarn: Yarn?
     @State private var fromProj: Project?
     @State private var yarnWeightInProj: Double = 0
     @State private var id = UUID()
-//
-//    @State private var showYarnList = false
-//    @State private var showProjList = false
-//
+
+    
+    @State private var showingAlert = false
+    @State private var showingYarnList = false
+    @State private var showingProjectList = false
+    @State public var array = [YarnProj]()
+ 
+    @State public var project: Project?
+   
+  
+   
     var body: some View {
-        Text("")
-    }
-//        Form {
-//            Section {
-//                Text("Пряжа")
-//                    .bold()
-//                    .foregroundColor(.mint)
-//                List {
-//                    ForEach(fromYarn) { yarn in
-//                        NavigationLink(destination: YarnView(yarn: yarn)) {
-//                            HStack {
-//                                Image(uiImage: UIImage(data: yarn.image!)!)
-//                                    .resizable()
-//                                    .scaledToFit()
-//                                    .edgesIgnoringSafeArea(.all)
-//                                    .clipShape(Circle())
-//                                    .frame(width: 60, height: 60)
-//                                    .shadow(radius: 10)
-//                                Text("\(yarn.name!)")
-//                            }
-//                        }
-//                    }
-//                }
-//                TextField("Кількість пряжі", value: $yarnWeightInProj, formatter: NumberFormatter())
-//
-//                Button("Обрати пряжу") {
-//                    showYarnList.toggle()
-//                }
-//            }.sheet(isPresented: $showYarnList) {
-//                List {
-//                    ForEach(yarns) { yarn in
-//                        HStack {
-//                            Image(uiImage: UIImage(data: yarn.image!)!)
-//                                .resizable()
-//                                .scaledToFit()
-//                                .edgesIgnoringSafeArea(.all)
-//                                .clipShape(Circle())
-//                                .frame(width: 60, height: 60)
-//                                .shadow(radius: 10)
-//                            Text(yarn.name ?? "")
-//                            Spacer()
-//                            Text(" - \(yarn.originalWeight) г")
-//                        }.onTapGesture {
-//                            fromYarn = yarn
-//                        }
-//                    }
-//
-//                }
-//            }
-//            Section {
-//                Text("Проект")
-//                    .bold()
-//                    .foregroundColor(.mint)
-//                NavigationLink(destination: ProjectView(project: fromProj)) {
-//                    HStack {
-//                        Image(uiImage: UIImage(data: fromProj.image!)!)
-//                            .resizable()
-//                            .scaledToFit()
-//                            .edgesIgnoringSafeArea(.all)
-//                            .clipShape(Circle())
-//                            .frame(width: 90, height: 90)
-//                            .shadow(radius: 10)
-//                            .overlay(Circle()
-//                                .stroke(Color.gray, lineWidth: 2))
-//                            .padding(15)
-//                        Text(fromProj.name ?? "")
-//                    }
-//                }
-//                Button("Обрати проект") {
-//                    showProjList.toggle()
-//                }
-//            }.sheet(isPresented: $showProjList) {
+        List {
+            ForEach(array, id: \.self) { yp in
+                NavigationLink(destination: YarnView(yarn: yp.fromYarn!)) {
+                    HStack {
+                        Image(uiImage: UIImage(data: (yp.fromYarn!.image)!) ?? UIImage(imageLiteralResourceName: "llama"))
+                            .resizable()
+                            .scaledToFit()
+                            .edgesIgnoringSafeArea(.all)
+                            .clipShape(Circle())
+                            .frame(width: 60, height: 60)
+                            .shadow(radius: 10)
+                        Text("\(yp.fromYarn!.wrappedName) - \(yp.yarnWeightInProj)г")
+                    }
+                }
+            }
+//            Button("Обрати проект") {
+//                showingProjectList.toggle()
+//            }.sheet(isPresented: $showingProjectList) {
 //                List {
 //                    ForEach(projects) { project in
 //                        HStack {
-//                            Image(uiImage: UIImage(data: project.image!)!)
-//                                .resizable()
-//                                .scaledToFit()
-//                                .edgesIgnoringSafeArea(.all)
-//                                .clipShape(Circle())
-//                                .frame(width: 60, height: 60)
-//                                .shadow(radius: 10)
-//                            Text(project.name ?? "")
+//                            Image(uiImage: UIImage(data: project.image!) ?? UIImage(imageLiteralResourceName: "llama"))
+//                                .smallCircle
+//                            Text("\(project.wrappedName)")
 //                        }.onTapGesture {
 //                            fromProj = project
+//
+//                            dismiss()
 //                        }
 //                    }
-//
 //                }
-//                }
-//
-//                HStack {
-//                    Spacer()
-//                    Button("Зберегти") {
-//                        DataController().addYarnProj(fromYarn: fromYarn, yarnWeightInProject: yarnWeightInProj, fromProject: fromProj, context: moc)
-//
-//                    }
-//                    Spacer()
-//                }
-//
-//        }
-//    }
+//            }
+            Button("Обрати пряжу") {
+              
+                showingYarnList.toggle()
+            }.sheet(isPresented: $showingYarnList) {
+                List {
+                    ForEach(yarns) { yarn in
+                        HStack {
+                            Image(uiImage: UIImage(data: yarn.image!)!)
+                                .smallCircle
+                            Text(yarn.wrappedName)
+                            Spacer()
+                            Text(" - \(yarn.originalWeight) г")
+                        }.onTapGesture {
+                            fromYarn = yarn
+                            fromProj = Project(context: moc)
+                            showingAlert.toggle()
+                        }.alert("Кількість пряжі", isPresented: $showingAlert) {
+                            
+                            TextField("", value: $yarnWeightInProj, formatter: NumberFormatter())
+                            
+                            Button("Ok") {
+                             
+                               let yp = DataController().addYarnProj(fromYarn: fromYarn!, fromProj: fromProj!, yarnWeightInProj: yarnWeightInProj, context: moc)
+                                array.append(yp)
+                               
+                                
+                                dismiss()
+                            }
+                        }
+                    }
+                }
+            }
+    
+        }
+    }
 }
-//

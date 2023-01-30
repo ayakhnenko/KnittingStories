@@ -35,15 +35,8 @@ struct AddYarnView: View {
                 Section {
                     HStack {
                         Image(uiImage: image)
-                            .resizable()
-                            .scaledToFit()
-                            .edgesIgnoringSafeArea(.all)
-                            .clipShape(Circle())
-                            .frame(width: 90, height: 90)
-                            .shadow(radius: 10)
-                            .overlay(Circle()
-                                .stroke(Color.gray, lineWidth: 2))
-                            .padding(15)
+                            .bigCircle
+//
                         Button(action: {
                             imagePicker.toggle()
                         }, label: {
@@ -142,11 +135,8 @@ struct AddYarnView: View {
                         DataController().addYarn(name: name, image: image, compound: compound, footagePer100g: footagePer100g, pricePer100g: pricePer100g, deliveryPrice: deliveryPrice, color: color, shop: shop, date: date, originalWeight: originalWeight, context: moc)
                         dismiss()
                     }
-                    .padding()
-                    .background(Color.yellow)
-                    .foregroundColor(.gray)
-                    .textFieldStyle(.roundedBorder)
-                    .cornerRadius(20)
+                    .buttonModif
+
                     Spacer()
                 }
             }

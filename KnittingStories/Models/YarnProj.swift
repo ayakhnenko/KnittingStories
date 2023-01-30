@@ -4,9 +4,9 @@
 //
 //  Created by Alisa Yakhnenko on 22.12.2022.
 //
-
-import Foundation
-
+//
+//import Foundation
+//
 //class YarnProj {
 //  
 //    var yarnWeightInProj: Double
@@ -19,3 +19,4 @@ import Foundation
 //        self.fromProj = fromProj
 //    }
 //}
+

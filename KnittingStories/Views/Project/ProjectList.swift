@@ -10,32 +10,27 @@ import SwiftUI
 struct ProjectList: View {
     
     @Environment(\.managedObjectContext) var moc
-    @FetchRequest(sortDescriptors: [SortDescriptor(\.finishDate, order: .reverse)]) var project: FetchedResults<Project>
+    @FetchRequest(sortDescriptors: [SortDescriptor(\.finishDate, order: .reverse)]) var projects: FetchedResults<Project>
     
     //@FetchRequest(sortDescriptors: [SortDescriptor(\.name], predicate: NSPredicate(format: "forSale == %@", "true" )) var projectForSale: FetchedResults<Project>
     
     @State private var showingAddProject = false
-
+    @State private var image = UIImage(imageLiteralResourceName: "llama")
     
     var body: some View {
         NavigationView {
             VStack {
                 List {
-                    ForEach(project) { project in
+                    ForEach(projects) { project in
                         NavigationLink {
                             ProjectView(project: project)
                         }
                     label: {
                             HStack {
                                 Image(uiImage: UIImage(data: project.image!) ?? UIImage(imageLiteralResourceName: "llama"))
-                                    .resizable()
-                                    .scaledToFit()
-                                    .edgesIgnoringSafeArea(.all)
-                                    .clipShape(Circle())
-                                    .frame(width: 60, height: 60)
-                                    .shadow(radius: 10)
+                                    .smallCircle
                                 
-                                Text("\(project.name!)")
+                                Text("\(project.wrappedName)")
                             }
                             
                         }
@@ -68,7 +63,7 @@ struct ProjectList: View {
     
     private func deleteProject(offsets: IndexSet) {
         withAnimation {
-            offsets.map { project[$0] }.forEach(moc.delete)
+            offsets.map { projects[$0] }.forEach(moc.delete)
             DataController().save(context: moc)
         }
     }

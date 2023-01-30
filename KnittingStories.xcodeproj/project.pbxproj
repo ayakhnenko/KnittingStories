@@ -10,32 +10,34 @@
 		00329C0328F96CB900216444 /* ImagePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00329C0228F96CB900216444 /* ImagePickerView.swift */; };
 		00329C0728FE8C7F00216444 /* EditProjectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00329C0628FE8C7F00216444 /* EditProjectView.swift */; };
 		00329C0928FE8F6D00216444 /* AddProjectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00329C0828FE8F6D00216444 /* AddProjectView.swift */; };
-		00329C0B28FE996300216444 /* Project+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00329C0A28FE996300216444 /* Project+Extension.swift */; };
 		0039CE8A29476B10005E7C5F /* AddYarnProjView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0039CE8929476B10005E7C5F /* AddYarnProjView.swift */; };
-		0039CE8C295469CD005E7C5F /* YarnProj.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0039CE8B295469CD005E7C5F /* YarnProj.swift */; };
 		003F915B28F2BF5C0040BD12 /* KnittingStoriesApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 003F915A28F2BF5C0040BD12 /* KnittingStoriesApp.swift */; };
 		003F915D28F2BF5C0040BD12 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 003F915C28F2BF5C0040BD12 /* ContentView.swift */; };
 		003F915F28F2BF5E0040BD12 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 003F915E28F2BF5E0040BD12 /* Assets.xcassets */; };
 		003F916228F2BF5E0040BD12 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 003F916128F2BF5E0040BD12 /* Preview Assets.xcassets */; };
 		003F916B28F2BF7D0040BD12 /* KnittingStories.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 003F916928F2BF7D0040BD12 /* KnittingStories.xcdatamodeld */; };
 		003F916E28F2CF8A0040BD12 /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 003F916D28F2CF8A0040BD12 /* DataController.swift */; };
-		003F917128F2D0CE0040BD12 /* Yarn+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 003F917028F2D0CE0040BD12 /* Yarn+Extension.swift */; };
-		003F917528F2E04E0040BD12 /* YarnProj+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 003F917428F2E04E0040BD12 /* YarnProj+Extension.swift */; };
 		003F917928F2E8F10040BD12 /* YarnList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 003F917828F2E8F10040BD12 /* YarnList.swift */; };
 		003F917B28F2EBF20040BD12 /* ProjectList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 003F917A28F2EBF20040BD12 /* ProjectList.swift */; };
 		003F917D28F2ED180040BD12 /* EditYarnView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 003F917C28F2ED180040BD12 /* EditYarnView.swift */; };
 		003F918728F56BA80040BD12 /* AddYarnView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 003F918628F56BA80040BD12 /* AddYarnView.swift */; };
 		004E77572920EF4000B4BE70 /* YarnView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 004E77562920EF4000B4BE70 /* YarnView.swift */; };
 		004E775F292260A000B4BE70 /* ProjectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 004E775E292260A000B4BE70 /* ProjectView.swift */; };
+		0094729A2971730B008D1082 /* Project+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009472942971730B008D1082 /* Project+CoreDataClass.swift */; };
+		0094729B2971730B008D1082 /* Project+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009472952971730B008D1082 /* Project+CoreDataProperties.swift */; };
+		0094729C2971730B008D1082 /* Yarn+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009472962971730B008D1082 /* Yarn+CoreDataClass.swift */; };
+		0094729D2971730B008D1082 /* Yarn+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009472972971730B008D1082 /* Yarn+CoreDataProperties.swift */; };
+		0094729E2971730B008D1082 /* YarnProj+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009472982971730B008D1082 /* YarnProj+CoreDataClass.swift */; };
+		0094729F2971730B008D1082 /* YarnProj+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009472992971730B008D1082 /* YarnProj+CoreDataProperties.swift */; };
+		009472A32987D4CC008D1082 /* Image + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009472A22987D4CC008D1082 /* Image + Extension.swift */; };
+		009472A72987E7B5008D1082 /* Button + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009472A62987E7B5008D1082 /* Button + Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		00329C0228F96CB900216444 /* ImagePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerView.swift; sourceTree = "<group>"; };
 		00329C0628FE8C7F00216444 /* EditProjectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProjectView.swift; sourceTree = "<group>"; };
 		00329C0828FE8F6D00216444 /* AddProjectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddProjectView.swift; sourceTree = "<group>"; };
-		00329C0A28FE996300216444 /* Project+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Project+Extension.swift"; sourceTree = "<group>"; };
 		0039CE8929476B10005E7C5F /* AddYarnProjView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddYarnProjView.swift; sourceTree = "<group>"; };
-		0039CE8B295469CD005E7C5F /* YarnProj.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YarnProj.swift; sourceTree = "<group>"; };
 		003F915728F2BF5C0040BD12 /* KnittingStories.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KnittingStories.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		003F915A28F2BF5C0040BD12 /* KnittingStoriesApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KnittingStoriesApp.swift; sourceTree = "<group>"; };
 		003F915C28F2BF5C0040BD12 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -43,14 +45,20 @@
 		003F916128F2BF5E0040BD12 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		003F916A28F2BF7D0040BD12 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		003F916D28F2CF8A0040BD12 /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
-		003F917028F2D0CE0040BD12 /* Yarn+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Yarn+Extension.swift"; sourceTree = "<group>"; };
-		003F917428F2E04E0040BD12 /* YarnProj+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "YarnProj+Extension.swift"; sourceTree = "<group>"; };
 		003F917828F2E8F10040BD12 /* YarnList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YarnList.swift; sourceTree = "<group>"; };
 		003F917A28F2EBF20040BD12 /* ProjectList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectList.swift; sourceTree = "<group>"; };
 		003F917C28F2ED180040BD12 /* EditYarnView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditYarnView.swift; sourceTree = "<group>"; };
 		003F918628F56BA80040BD12 /* AddYarnView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddYarnView.swift; sourceTree = "<group>"; };
 		004E77562920EF4000B4BE70 /* YarnView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YarnView.swift; sourceTree = "<group>"; };
 		004E775E292260A000B4BE70 /* ProjectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectView.swift; sourceTree = "<group>"; };
+		009472942971730B008D1082 /* Project+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Project+CoreDataClass.swift"; sourceTree = "<group>"; };
+		009472952971730B008D1082 /* Project+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Project+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		009472962971730B008D1082 /* Yarn+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Yarn+CoreDataClass.swift"; sourceTree = "<group>"; };
+		009472972971730B008D1082 /* Yarn+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Yarn+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		009472982971730B008D1082 /* YarnProj+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "YarnProj+CoreDataClass.swift"; sourceTree = "<group>"; };
+		009472992971730B008D1082 /* YarnProj+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "YarnProj+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		009472A22987D4CC008D1082 /* Image + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Image + Extension.swift"; sourceTree = "<group>"; };
+		009472A62987E7B5008D1082 /* Button + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Button + Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,10 +120,15 @@
 		003F916828F2BF6E0040BD12 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				009472942971730B008D1082 /* Project+CoreDataClass.swift */,
+				009472952971730B008D1082 /* Project+CoreDataProperties.swift */,
+				009472962971730B008D1082 /* Yarn+CoreDataClass.swift */,
+				009472972971730B008D1082 /* Yarn+CoreDataProperties.swift */,
+				009472982971730B008D1082 /* YarnProj+CoreDataClass.swift */,
+				009472992971730B008D1082 /* YarnProj+CoreDataProperties.swift */,
 				003F916928F2BF7D0040BD12 /* KnittingStories.xcdatamodeld */,
 				003F916D28F2CF8A0040BD12 /* DataController.swift */,
 				00329C0228F96CB900216444 /* ImagePickerView.swift */,
-				0039CE8B295469CD005E7C5F /* YarnProj.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -123,10 +136,10 @@
 		003F916C28F2CEC50040BD12 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				0039CE8829476AEC005E7C5F /* YarnProjView */,
 				003F915C28F2BF5C0040BD12 /* ContentView.swift */,
 				004E775C2920F3E200B4BE70 /* Yarn */,
 				004E775D2920F3FB00B4BE70 /* Project */,
+				0039CE8829476AEC005E7C5F /* YarnProjView */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -134,9 +147,8 @@
 		003F916F28F2D0B10040BD12 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				003F917028F2D0CE0040BD12 /* Yarn+Extension.swift */,
-				003F917428F2E04E0040BD12 /* YarnProj+Extension.swift */,
-				00329C0A28FE996300216444 /* Project+Extension.swift */,
+				009472A22987D4CC008D1082 /* Image + Extension.swift */,
+				009472A62987E7B5008D1082 /* Button + Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -233,22 +245,26 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0039CE8C295469CD005E7C5F /* YarnProj.swift in Sources */,
 				003F915D28F2BF5C0040BD12 /* ContentView.swift in Sources */,
+				0094729E2971730B008D1082 /* YarnProj+CoreDataClass.swift in Sources */,
+				0094729B2971730B008D1082 /* Project+CoreDataProperties.swift in Sources */,
 				003F916E28F2CF8A0040BD12 /* DataController.swift in Sources */,
 				0039CE8A29476B10005E7C5F /* AddYarnProjView.swift in Sources */,
 				003F917928F2E8F10040BD12 /* YarnList.swift in Sources */,
 				00329C0328F96CB900216444 /* ImagePickerView.swift in Sources */,
+				009472A32987D4CC008D1082 /* Image + Extension.swift in Sources */,
 				004E775F292260A000B4BE70 /* ProjectView.swift in Sources */,
 				003F917B28F2EBF20040BD12 /* ProjectList.swift in Sources */,
-				003F917528F2E04E0040BD12 /* YarnProj+Extension.swift in Sources */,
+				0094729D2971730B008D1082 /* Yarn+CoreDataProperties.swift in Sources */,
+				0094729A2971730B008D1082 /* Project+CoreDataClass.swift in Sources */,
+				0094729F2971730B008D1082 /* YarnProj+CoreDataProperties.swift in Sources */,
 				003F915B28F2BF5C0040BD12 /* KnittingStoriesApp.swift in Sources */,
 				003F916B28F2BF7D0040BD12 /* KnittingStories.xcdatamodeld in Sources */,
+				009472A72987E7B5008D1082 /* Button + Extension.swift in Sources */,
 				00329C0728FE8C7F00216444 /* EditProjectView.swift in Sources */,
+				0094729C2971730B008D1082 /* Yarn+CoreDataClass.swift in Sources */,
 				00329C0928FE8F6D00216444 /* AddProjectView.swift in Sources */,
-				003F917128F2D0CE0040BD12 /* Yarn+Extension.swift in Sources */,
 				004E77572920EF4000B4BE70 /* YarnView.swift in Sources */,
-				00329C0B28FE996300216444 /* Project+Extension.swift in Sources */,
 				003F918728F56BA80040BD12 /* AddYarnView.swift in Sources */,
 				003F917D28F2ED180040BD12 /* EditYarnView.swift in Sources */,
 			);
@@ -379,7 +395,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"KnittingStories/Preview Content\"";
-				DEVELOPMENT_TEAM = 2QS28A5FPL;
+				DEVELOPMENT_TEAM = 68J6V7NGCT;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -409,7 +425,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"KnittingStories/Preview Content\"";
-				DEVELOPMENT_TEAM = 2QS28A5FPL;
+				DEVELOPMENT_TEAM = 68J6V7NGCT;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;

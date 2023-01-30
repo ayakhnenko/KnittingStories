@@ -30,7 +30,7 @@ struct EditYarnView: View {
     @State private var imagePicker = false
     @State private var currentWeight: Double = 0
     
-    @State private var projectsArray: [Project] = []
+ 
     
     var body: some View {
         NavigationView {
@@ -39,13 +39,7 @@ struct EditYarnView: View {
                 Section {
                     HStack {
                         Image(uiImage: UIImage(data: yarn.image!)!)
-                        
-                            .resizable()
-                            .scaledToFit()
-                            .edgesIgnoringSafeArea(.all)
-                            .clipShape(Circle())
-                            .frame(width: 90, height: 90)
-                            .shadow(radius: 10)
+                            .bigCircle
                             .onAppear {
                                 image = UIImage(data: yarn.image!)!
                             }
@@ -68,9 +62,9 @@ struct EditYarnView: View {
                             .foregroundColor(.indigo)
                         HStack {
                             Text("Назва:")
-                            TextField("\(yarn.name!)", text: $name)
+                            TextField("\(yarn.wrappedName)", text: $name)
                                 .onAppear {
-                                    name = yarn.name!
+                                    name = yarn.wrappedName
                                 }
                         }
                         .padding(.horizontal, 6)
@@ -185,8 +179,6 @@ struct EditYarnView: View {
                         .padding()
                     }
                 }
-                
-                
                 Section {
                     VStack {
                         Text("Вироби")
@@ -194,39 +186,30 @@ struct EditYarnView: View {
                             .foregroundColor(.purple)
                             .padding()
                         List {
-                            ForEach(projectsArray) { project in
-                                //NavigationLink(destination: ProjectView(project: project)) {
-                                    Image(uiImage: UIImage(data: project.image!)!)
-                                        .resizable()
-                                        .scaledToFit()
-                                        .edgesIgnoringSafeArea(.all)
-                                        .clipShape(Circle())
-                                        .frame(width: 60, height: 60)
-                                        .shadow(radius: 10)
-                                        .padding(15)
+                            ForEach(yarn.yarnWeightArray) { yarnProj in
+                                NavigationLink(destination: ProjectView(project: yarnProj.fromProj!)) {
+                                    Image(uiImage: UIImage(data: (yarnProj.fromProj?.image)!) ?? UIImage(imageLiteralResourceName: "sheep"))
+                                        .smallCircle
                                         .onAppear {
-                                            image = UIImage(data: project.image!)!
+                                            image = UIImage(data: yarnProj.fromProj!.image!)!
                                         }
-                                    Text(project.name ?? "")
-                                //}
+                                    Text("\(yarnProj.fromProj?.name ?? "") - \(yarnProj.yarnWeightInProj)г")
+
+                                }
                             }
                         }
-                    }.onAppear {
-                        //projectsArray = yarn.projectsArray
+                        
                     }
                 }
                 
+
                 HStack {
                     Spacer()
                     Button("Зберегти") {
                         DataController().editYarn(yarn: yarn, name: name, image: image, compound: compound, footagePer100g: footagePer100g, pricePer100g: pricePer100g, deliveryPrice: deliveryPrice, color: color, shop: shop, date: date, originalWeight: originalWeight, context: moc)
                         dismiss()
                     }
-                    .padding()
-                    .background(Color.yellow)
-                    .foregroundColor(.gray)
-                    .textFieldStyle(.roundedBorder)
-                    .cornerRadius(20)
+                    .buttonModif
                     Spacer()
                 }
             }

@@ -24,16 +24,9 @@ struct YarnList: View {
                 NavigationLink(destination: YarnView(yarn: yarn)) {
                     HStack {
                         Image(uiImage: UIImage(data: yarn.image!)!)
-                            .resizable()
-                            .scaledToFit()
-                            .edgesIgnoringSafeArea(.all)
-                            .clipShape(Circle())
-                            .frame(width: 60, height: 60)
-                            .shadow(radius: 10)
-//                            .overlay(Circle()
-//                                .stroke(Color.gray, lineWidth: 2))
-//                
-                        Text(yarn.name ?? "шо-то там...")
+                            .smallCircle
+                       
+                        Text(yarn.wrappedName)
                         Spacer()
                         Text(" - \(yarn.originalWeight)г")
                     }

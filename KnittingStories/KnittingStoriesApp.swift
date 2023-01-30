@@ -9,10 +9,11 @@ import SwiftUI
 
 @main
 struct KnittingStoriesApp: App {
+    
    
-    
-    
     @StateObject private var dataController = DataController()
+    
+    
     var body: some Scene {
         WindowGroup {
             ContentView()

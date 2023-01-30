@@ -8,6 +8,7 @@
 import Foundation
 import CoreData
 import UIKit
+//import SwiftUI
 
 class DataController: ObservableObject {
     let container = NSPersistentContainer(name: "KnittingStories")
@@ -16,7 +17,9 @@ class DataController: ObservableObject {
         container.loadPersistentStores { description, error in
             if let error = error {
                 print("Failed to load the data \(error.localizedDescription)")
+                return
             }
+            self.container.viewContext.mergePolicy = NSMergePolicy.mergeByPropertyObjectTrump
         }
     }
     func save(context: NSManagedObjectContext) {
@@ -65,17 +68,26 @@ class DataController: ObservableObject {
     }
     
    
-    func addYarnProj(fromYarn: Yarn, yarnWeightInProj: Double, context: NSManagedObjectContext) {
+    func addYarnProj(fromYarn: Yarn, fromProj: Project, yarnWeightInProj: Double, context: NSManagedObjectContext) -> YarnProj {
         let yarnProj = YarnProj(context: context)
         yarnProj.id = UUID()
         yarnProj.fromYarn = fromYarn
+        yarnProj.fromProj = fromProj
         yarnProj.yarnWeightInProj = yarnWeightInProj
         save(context: context)
+        print("YarnProj was saved")
+        return yarnProj
        
     }
     
+    func addFromProjToYP(yarnProjArray: [YarnProj], project: Project, context: NSManagedObjectContext) {
+        for yarnProj in yarnProjArray {
+            yarnProj.fromProj = project
+        }
+        save(context: context)
+    }
    
-    func addProject(name: String, image: UIImage, totalWeight: Double, startDate: Date, finishDate: Date, forSale: Bool, sold: Bool, size: String, needlesNumber: Int16, marketplace: String, saleDate: Date, comission: Double, deliveryCost: Double, saleCost: Double, yarnsProjArray: [YarnProj], context: NSManagedObjectContext) {
+    func addProject(name: String, image: UIImage, totalWeight: Double, startDate: Date, finishDate: Date, forSale: Bool, sold: Bool, size: String, needlesNumber: Int16, marketplace: String, saleDate: Date, comission: Double, deliveryCost: Double, saleCost: Double, context: NSManagedObjectContext) -> Project {
         
         let project = Project(context: context)
         
@@ -94,23 +106,17 @@ class DataController: ObservableObject {
         project.comission = comission
         project.deliveryCost = deliveryCost
         project.saleCost = saleCost
-       
         
-       let uniqueYarnProj = Set(yarnsProjArray)
-        for yarnProj in uniqueYarnProj {
-            project.addToYarnForProject(yarnProj)
-        }
+        
 
         save(context: context)
+       return project
     
-//        let uniqueYarn = Set(yarnsArray)
-//        for yarn in uniqueYarn {
-//            project.addToYarnForProject(yarn)
-//        }
+     
      
     }
     
-    func editProject(project: Project, name: String, image: UIImage, totalWeight: Double, startDate: Date, finishDate: Date, forSale: Bool, sold: Bool, size: String, needlesNumber: Int16, marketplace: String, saleDate: Date, comission: Double, deliveryCost: Double, saleCost: Double, yarnProjArray: [YarnProj], context: NSManagedObjectContext) {
+    func editProject(project: Project, name: String, image: UIImage, totalWeight: Double, startDate: Date, finishDate: Date, forSale: Bool, sold: Bool, size: String, needlesNumber: Int16, marketplace: String, saleDate: Date, comission: Double, deliveryCost: Double, saleCost: Double, context: NSManagedObjectContext) {
         project.name = name
         project.image = image.pngData()
         project.totalWeight = totalWeight
@@ -126,7 +132,6 @@ class DataController: ObservableObject {
         project.deliveryCost = deliveryCost
         project.saleCost = saleCost
        
-     
         
         save(context: context)
     }
