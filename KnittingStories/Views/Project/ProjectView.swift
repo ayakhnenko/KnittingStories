@@ -48,15 +48,7 @@ var project: FetchedResults<Project>.Element
                 Section {
                     VStack(alignment: .leading) {
                         Image(uiImage: UIImage(data: project.image!)!)
-                            .resizable()
-                            .scaledToFit()
-                            .edgesIgnoringSafeArea(.all)
-                            .clipShape(Circle())
-                            .frame(width: 90, height: 90)
-                            .shadow(radius: 10)
-                            .overlay(Circle()
-                                .stroke(Color.gray, lineWidth: 2))
-                            .padding(15)
+                            .bigCircle
                             .onAppear {
                                 image = UIImage(data: project.image!)!
                             }
@@ -66,8 +58,8 @@ var project: FetchedResults<Project>.Element
                     Text("Загальні параметри")
                         .bold()
                         .foregroundColor(.blue)
-                    Text("Назва: \(project.name ?? "")")
-                    Text("Загальна вага: \(project.totalWeight)")
+                    Text("Назва: \(project.wrappedName)")
+                    Text("Загальна вага,(г): \(project.totalWeight)")
                     DatePicker("Початок:", selection: $startDate, displayedComponents: [.date])
                         .padding(.horizontal, 6)
                         .onAppear {
@@ -80,9 +72,7 @@ var project: FetchedResults<Project>.Element
                         }
                     Text("Розмір виробу: \(project.size ?? "")")
                     Text("Розмір спиць: \(project.needlesNumber)")
-                    if project.forSale {
-                        Text("На продаж")
-                    }
+                    
                 }
                 Section {
                     Text("Пряжа")
@@ -105,29 +95,35 @@ var project: FetchedResults<Project>.Element
                                             }
                                     }
                                 }
-//                            }.onAppear {
-//                                yarnForProject = project.yarnForProjectArray
+                                //                            }.onAppear {
+                                //                                yarnForProject = project.yarnForProjectArray
                             }
                         }
                     }
-                   if forSale {
-                        Section {
-                            Text("Параметри для продажу")
-                                .bold()
-                                .foregroundColor(.blue)
-                            Text("Маркетплейс: \(project.marketplace ?? "")")
-                            DatePicker("Дата продажу:", selection: $saleDate, displayedComponents: [.date])
-                                .padding(.horizontal, 6)
-                                .onAppear {
-                                    saleDate = project.saleDate ?? Date()
-                                }
-                            Text("Комісія: \(project.comission)")
-                            Text("Вартість доставки: \(project.deliveryCost)")
-                            Text("Загальні витрати: \(project.additExpense)")
-                            Text("Прибуток: \(project.margin)")
-                        }
+                }
+                if project.forSale {
+                    Text("На продаж")
+                }
+                if project.sold {
+                    Section {
+                        Text("Параметри для продажу")
+                            .bold()
+                            .foregroundColor(.blue)
+                        Text("Маркетплейс: \(project.marketplace ?? "")")
+                        Text("Комісія,(грн): \(project.comission)")
+                        DatePicker("Дата продажу:", selection: $saleDate, displayedComponents: [.date])
+                            .padding(.horizontal, 6)
+                            .onAppear {
+                                saleDate = project.saleDate ?? Date()
+                            }
+                        Text("Собівартість виробу,(грн): \(project.cost)")
+                        Text("Вартість доставки,(грн): \(project.deliveryCost)")
+                        Text("Загальні витрати,(грн): \(project.additExpense)")
+                        Text("Прибуток,(грн): \(project.margin)")
+                        
                     }
                 }
+                
             }
         }.toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {

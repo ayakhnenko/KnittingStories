@@ -31,6 +31,10 @@
 		0094729F2971730B008D1082 /* YarnProj+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009472992971730B008D1082 /* YarnProj+CoreDataProperties.swift */; };
 		009472A32987D4CC008D1082 /* Image + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009472A22987D4CC008D1082 /* Image + Extension.swift */; };
 		009472A72987E7B5008D1082 /* Button + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009472A62987E7B5008D1082 /* Button + Extension.swift */; };
+		009472A92989173E008D1082 /* UIImageTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009472A82989173E008D1082 /* UIImageTransformer.swift */; };
+		009472AB29895691008D1082 /* Double + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009472AA29895691008D1082 /* Double + Extension.swift */; };
+		009472AD298A8635008D1082 /* ArchivedYarnListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009472AC298A8635008D1082 /* ArchivedYarnListView.swift */; };
+		009472AF298A964E008D1082 /* SoldProjectListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009472AE298A964E008D1082 /* SoldProjectListView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -59,6 +63,10 @@
 		009472992971730B008D1082 /* YarnProj+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "YarnProj+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		009472A22987D4CC008D1082 /* Image + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Image + Extension.swift"; sourceTree = "<group>"; };
 		009472A62987E7B5008D1082 /* Button + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Button + Extension.swift"; sourceTree = "<group>"; };
+		009472A82989173E008D1082 /* UIImageTransformer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageTransformer.swift; sourceTree = "<group>"; };
+		009472AA29895691008D1082 /* Double + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double + Extension.swift"; sourceTree = "<group>"; };
+		009472AC298A8635008D1082 /* ArchivedYarnListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchivedYarnListView.swift; sourceTree = "<group>"; };
+		009472AE298A964E008D1082 /* SoldProjectListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoldProjectListView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,10 +128,10 @@
 		003F916828F2BF6E0040BD12 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				009472942971730B008D1082 /* Project+CoreDataClass.swift */,
-				009472952971730B008D1082 /* Project+CoreDataProperties.swift */,
 				009472962971730B008D1082 /* Yarn+CoreDataClass.swift */,
 				009472972971730B008D1082 /* Yarn+CoreDataProperties.swift */,
+				009472942971730B008D1082 /* Project+CoreDataClass.swift */,
+				009472952971730B008D1082 /* Project+CoreDataProperties.swift */,
 				009472982971730B008D1082 /* YarnProj+CoreDataClass.swift */,
 				009472992971730B008D1082 /* YarnProj+CoreDataProperties.swift */,
 				003F916928F2BF7D0040BD12 /* KnittingStories.xcdatamodeld */,
@@ -149,6 +157,8 @@
 			children = (
 				009472A22987D4CC008D1082 /* Image + Extension.swift */,
 				009472A62987E7B5008D1082 /* Button + Extension.swift */,
+				009472A82989173E008D1082 /* UIImageTransformer.swift */,
+				009472AA29895691008D1082 /* Double + Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -160,6 +170,7 @@
 				003F918628F56BA80040BD12 /* AddYarnView.swift */,
 				004E77562920EF4000B4BE70 /* YarnView.swift */,
 				003F917C28F2ED180040BD12 /* EditYarnView.swift */,
+				009472AC298A8635008D1082 /* ArchivedYarnListView.swift */,
 			);
 			path = Yarn;
 			sourceTree = "<group>";
@@ -171,6 +182,7 @@
 				00329C0828FE8F6D00216444 /* AddProjectView.swift */,
 				004E775E292260A000B4BE70 /* ProjectView.swift */,
 				00329C0628FE8C7F00216444 /* EditProjectView.swift */,
+				009472AE298A964E008D1082 /* SoldProjectListView.swift */,
 			);
 			path = Project;
 			sourceTree = "<group>";
@@ -247,11 +259,14 @@
 			files = (
 				003F915D28F2BF5C0040BD12 /* ContentView.swift in Sources */,
 				0094729E2971730B008D1082 /* YarnProj+CoreDataClass.swift in Sources */,
+				009472A92989173E008D1082 /* UIImageTransformer.swift in Sources */,
 				0094729B2971730B008D1082 /* Project+CoreDataProperties.swift in Sources */,
+				009472AF298A964E008D1082 /* SoldProjectListView.swift in Sources */,
 				003F916E28F2CF8A0040BD12 /* DataController.swift in Sources */,
 				0039CE8A29476B10005E7C5F /* AddYarnProjView.swift in Sources */,
 				003F917928F2E8F10040BD12 /* YarnList.swift in Sources */,
 				00329C0328F96CB900216444 /* ImagePickerView.swift in Sources */,
+				009472AD298A8635008D1082 /* ArchivedYarnListView.swift in Sources */,
 				009472A32987D4CC008D1082 /* Image + Extension.swift in Sources */,
 				004E775F292260A000B4BE70 /* ProjectView.swift in Sources */,
 				003F917B28F2EBF20040BD12 /* ProjectList.swift in Sources */,
@@ -266,6 +281,7 @@
 				00329C0928FE8F6D00216444 /* AddProjectView.swift in Sources */,
 				004E77572920EF4000B4BE70 /* YarnView.swift in Sources */,
 				003F918728F56BA80040BD12 /* AddYarnView.swift in Sources */,
+				009472AB29895691008D1082 /* Double + Extension.swift in Sources */,
 				003F917D28F2ED180040BD12 /* EditYarnView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

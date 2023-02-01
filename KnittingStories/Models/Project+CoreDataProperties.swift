@@ -8,6 +8,7 @@
 
 import Foundation
 import CoreData
+import UIKit
 
 
 extension Project {
@@ -19,7 +20,7 @@ extension Project {
     @NSManaged public var additExpenses: Double
     @NSManaged public var comission: Double
     @NSManaged public var comments: String?
-    @NSManaged public var cost: Double
+//    @NSManaged public var cost: Double
     @NSManaged public var deliveryCost: Double
     @NSManaged public var finishDate: Date?
     @NSManaged public var forSale: Bool

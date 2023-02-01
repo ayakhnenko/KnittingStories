@@ -14,6 +14,9 @@ class DataController: ObservableObject {
     let container = NSPersistentContainer(name: "KnittingStories")
     
     init() {
+//        
+//        ValueTransformer.setValueTransformer(UIImageTransformer(), forName: NSValueTransformerName("UIImageTransformer"))
+//        
         container.loadPersistentStores { description, error in
             if let error = error {
                 print("Failed to load the data \(error.localizedDescription)")
@@ -31,7 +34,7 @@ class DataController: ObservableObject {
         }
     }
     
-    func addYarn(name: String, image: UIImage, compound: String, footagePer100g: Double, pricePer100g: Double, deliveryPrice: Double, color: String, shop: String, date: Date, originalWeight: Double, context: NSManagedObjectContext ) {
+    func addYarn(name: String, image: UIImage, compound: String, footagePer100g: Double, pricePer100g: Double, deliveryPrice: Double, color: String, shop: String, date: Date, originalWeight: Double, isArchived: Bool, context: NSManagedObjectContext ) {
         
         let yarn = Yarn(context: context)
         
@@ -46,13 +49,13 @@ class DataController: ObservableObject {
         yarn.shop = shop
         yarn.date = date
         yarn.originalWeight = originalWeight
-        
+        yarn.isArchived = isArchived
         
         save(context: context)
         
     }
     
-    func editYarn(yarn: Yarn, name: String, image: UIImage, compound: String, footagePer100g: Double, pricePer100g: Double, deliveryPrice: Double, color: String, shop: String, date: Date, originalWeight: Double, context: NSManagedObjectContext ) {
+    func editYarn(yarn: Yarn, name: String, image: UIImage, compound: String, footagePer100g: Double, pricePer100g: Double, deliveryPrice: Double, color: String, shop: String, date: Date, originalWeight: Double, isArchived: Bool, context: NSManagedObjectContext ) {
         yarn.name = name
         yarn.image = image.pngData()
         yarn.compound = compound
@@ -63,9 +66,12 @@ class DataController: ObservableObject {
         yarn.shop = shop
         yarn.date = date
         yarn.originalWeight = originalWeight
+        yarn.isArchived = isArchived
         
         save(context: context)
     }
+    
+  
     
    
     func addYarnProj(fromYarn: Yarn, fromProj: Project, yarnWeightInProj: Double, context: NSManagedObjectContext) -> YarnProj {
@@ -80,14 +86,9 @@ class DataController: ObservableObject {
        
     }
     
-    func addFromProjToYP(yarnProjArray: [YarnProj], project: Project, context: NSManagedObjectContext) {
-        for yarnProj in yarnProjArray {
-            yarnProj.fromProj = project
-        }
-        save(context: context)
-    }
+  
    
-    func addProject(name: String, image: UIImage, totalWeight: Double, startDate: Date, finishDate: Date, forSale: Bool, sold: Bool, size: String, needlesNumber: Int16, marketplace: String, saleDate: Date, comission: Double, deliveryCost: Double, saleCost: Double, context: NSManagedObjectContext) -> Project {
+    func addProject(name: String, image: UIImage, totalWeight: Double, startDate: Date, finishDate: Date, forSale: Bool, sold: Bool, size: String, needlesNumber: Int16, marketplace: String, saleDate: Date, comission: Double, deliveryCost: Double, saleCost: Double, context: NSManagedObjectContext) {
         
         let project = Project(context: context)
         
@@ -107,13 +108,8 @@ class DataController: ObservableObject {
         project.deliveryCost = deliveryCost
         project.saleCost = saleCost
         
-        
-
-        save(context: context)
-       return project
-    
-     
-     
+       save(context: context)
+      
     }
     
     func editProject(project: Project, name: String, image: UIImage, totalWeight: Double, startDate: Date, finishDate: Date, forSale: Bool, sold: Bool, size: String, needlesNumber: Int16, marketplace: String, saleDate: Date, comission: Double, deliveryCost: Double, saleCost: Double, context: NSManagedObjectContext) {

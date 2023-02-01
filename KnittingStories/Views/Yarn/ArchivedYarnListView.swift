@@ -1,17 +1,19 @@
 //
-//  YarnList.swift
+//  ArchivedYarnView.swift
 //  KnittingStories
 //
-//  Created by Alisa Yakhnenko on 09.10.2022.
+//  Created by Alisa Yakhnenko on 01.02.2023.
 //
 
 import SwiftUI
 
-struct YarnList: View {
+
+
+struct ArchivedYarnListView: View {
     
     @Environment(\.managedObjectContext) var moc
-    @FetchRequest(sortDescriptors: [SortDescriptor(\.date, order: .reverse)], predicate: NSPredicate(format: "isArchived == false")) var yarn: FetchedResults<Yarn>
-  
+    @FetchRequest(sortDescriptors: [], predicate: NSPredicate(format: "isArchived == true")) var yarn: FetchedResults<Yarn>
+    
     
     @State private var showingAddYarn = false
     
@@ -37,15 +39,15 @@ struct YarnList: View {
             
         }.listStyle(.plain)
             }
-            .navigationTitle("Пряжа")
+            .navigationTitle("Архів пряжі")
             .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    Button {
-                        showingAddYarn.toggle()
-                    } label: {
-                        Label("Add yarn", systemImage: "plus.circle")
-                    }
-                }
+//                ToolbarItem(placement: .navigationBarTrailing) {
+//                    Button {
+//                        showingAddYarn.toggle()
+//                    } label: {
+//                        Label("Add yarn", systemImage: "plus.circle")
+//                    }
+//                }
                 ToolbarItem(placement: .navigationBarLeading) {
                     EditButton()
                 }
@@ -68,8 +70,9 @@ struct YarnList: View {
 }
 
 
-struct YarnList_Previews: PreviewProvider {
+
+struct ArchivedYarnListView_Previews: PreviewProvider {
     static var previews: some View {
-        YarnList()
+        ArchivedYarnListView()
     }
 }

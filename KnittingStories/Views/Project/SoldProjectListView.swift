@@ -1,21 +1,20 @@
 //
-//  ProjectList.swift
+//  SoldProjectListView.swift
 //  KnittingStories
 //
-//  Created by Alisa Yakhnenko on 09.10.2022.
+//  Created by Alisa Yakhnenko on 01.02.2023.
 //
 
 import SwiftUI
 
-struct ProjectList: View {
+struct SoldProjectListView: View {
     
-    @Environment(\.managedObjectContext) var moc
-    @FetchRequest(sortDescriptors: [SortDescriptor(\.finishDate, order: .reverse)]) var projects: FetchedResults<Project>
-    
-    
+   @Environment(\.managedObjectContext) var moc
+   @FetchRequest(sortDescriptors: [SortDescriptor(\.finishDate, order: .reverse)], predicate: NSPredicate(format: "sold == true")) var projects: FetchedResults<Project>
+                                   
     @State private var showingAddProject = false
     @State private var image = UIImage(imageLiteralResourceName: "llama")
-    
+                                    
     var body: some View {
         NavigationView {
             VStack {
@@ -25,31 +24,23 @@ struct ProjectList: View {
                             ProjectView(project: project)
                         }
                     label: {
-                            HStack {
-                                Image(uiImage: UIImage(data: project.image!) ?? UIImage(imageLiteralResourceName: "llama"))
-                                    .smallCircle
-                                
-                                Text("\(project.wrappedName)")
-                            }
+                        HStack {
+                            Image(uiImage: UIImage(data: project.image!) ?? UIImage(imageLiteralResourceName: "llama"))
+                                .smallCircle
                             
+                            Text("\(project.wrappedName)")
                         }
+                        
+                    }
                     }
                     .onDelete(perform: deleteProject)
                 }.listStyle(.plain)
             }
             .navigationTitle("Вироби")
             .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    Button {
-                        showingAddProject.toggle()
-                    } label: {
-                        Label("Add project", systemImage: "plus.circle")
-                    }
-                }
                 ToolbarItem(placement: .navigationBarLeading) {
                     EditButton()
                 }
-                
             }
             .sheet(isPresented: $showingAddProject) {
                 AddProjectView()
@@ -58,19 +49,20 @@ struct ProjectList: View {
         .navigationViewStyle(.stack)
         
     }
-    
-    
+                                    
+                                    
     private func deleteProject(offsets: IndexSet) {
         withAnimation {
             offsets.map { projects[$0] }.forEach(moc.delete)
             DataController().save(context: moc)
         }
     }
-    
-}
-
-struct ProjectList_Previews: PreviewProvider {
-    static var previews: some View {
-        ProjectList()
+                                    
+                                    }
+                                    
+                                    
+    struct SoldProjectListView_Previews: PreviewProvider {
+        static var previews: some View {
+            SoldProjectListView()
+        }
     }
-}

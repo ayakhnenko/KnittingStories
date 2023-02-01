@@ -27,24 +27,21 @@ struct YarnView: View {
     @State private var color: String = ""
     @State private var id = UUID()
     @State private var pricePer100g: Double = 1
+    @State private var isArchived = false
 
     @State private var showEditYarn = false
    
     @State private var yarnProj: YarnProj?
-    @State private var yarnWeightInProject: Double = 0
+   // @State private var yarnWeightInProject: Double = 0
    
     var body: some View {
         NavigationView {
             Form {
-                Section {
-                    VStack(alignment: .leading) {
-                        Image(uiImage: UIImage(data: yarn.image!)!)
-                            .bigCircle
-                            .onAppear {
-                                image = UIImage(data: yarn.image!)!
-                            }
+                Image(uiImage: UIImage(data: yarn.image!)!)
+                    .bigCircle
+                    .onAppear {
+                        image = UIImage(data: yarn.image!)!
                     }
-                }
                 Section {
                     Text("Загальні параметри")
                         .bold()
@@ -55,15 +52,13 @@ struct YarnView: View {
                     Text("Колір: \(yarn.color ?? "")")
                 }
                 Section {
-                    VStack {
-                        Text("Вимірювальні параметри")
-                            .bold()
-                            .foregroundColor(.purple)
-                            .padding()
-                        Text("Початкова вага: \(yarn.originalWeight)")
-                        Text("Метрів у 100г: \(yarn.footagePer100g)")
-                        Text("Поточная вага: \(yarn.currentWeight)")
-                    }
+                    Text("Вимірювальні параметри")
+                        .bold()
+                        .foregroundColor(.purple)
+                        .padding()
+                    Text("Початкова вага,(г) : \(yarn.originalWeight)")
+                    Text("Метрів у 100г: \(yarn.footagePer100g)")
+                    Text("Поточная вага,(г): \(yarn.calcCurrentWeight())")
                 }
                 Section {
                     VStack(alignment: .leading) {
@@ -84,15 +79,18 @@ struct YarnView: View {
                         .bold()
                         .foregroundColor(.purple)
                         .padding()
-                    Text("Доставка, грн: \(yarn.deliveryPrice)")
-                        .padding()
+                    Text("Доставка, (грн): \(yarn.deliveryPrice)")
                     Text("Ціна за 100г: \(yarn.pricePer100g)")
-                        .padding()
-                    Text("Загальні витрати: \(yarn.totalExpense) грн")
-                        .padding()
+                    Text("Загальні витрати, (грн) : \(yarn.totalExpense)")
                     Text("Ціна за 1г, (грн): \(yarn.pricePer1g)")
-                        .padding()
                     
+                }
+                Section {
+                    Toggle("Перенести пряжу до архиву?", isOn: $isArchived)
+                        .onAppear {
+                            isArchived = yarn.isArchived
+                        }
+                  
                 }
                 Section {
                     VStack {
@@ -109,7 +107,6 @@ struct YarnView: View {
                                             image = UIImage(data: yarnProj.fromProj!.image!)!
                                         }
                                     Text("\(yarnProj.fromProj?.name ?? "") - \(yarnProj.yarnWeightInProj)г")
-
                                 }
                             }
                         }

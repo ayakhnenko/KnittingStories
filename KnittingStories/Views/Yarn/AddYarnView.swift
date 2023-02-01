@@ -25,10 +25,10 @@ struct AddYarnView: View {
     @State private var color: String = ""
     @State private var id = UUID()
     @State private var pricePer100g: Double = 1
-    
+    @State private var isArchived = false
     
     @State private var imagePicker = false
-    
+   
     
     var body: some View {
             Form {
@@ -36,7 +36,7 @@ struct AddYarnView: View {
                     HStack {
                         Image(uiImage: image)
                             .bigCircle
-//
+
                         Button(action: {
                             imagePicker.toggle()
                         }, label: {
@@ -78,10 +78,9 @@ struct AddYarnView: View {
                             .bold()
                             .foregroundColor(.indigo)
                         HStack {
-                            Text("Початкова вага:")
+                            Text("Початкова вага, (г):")
                             TextField("", value: $originalWeight, formatter: NumberFormatter())
                                 .keyboardType(.numberPad)
-                            
                         }
                         .padding()
                         .textFieldStyle(.roundedBorder)
@@ -90,15 +89,13 @@ struct AddYarnView: View {
                             Text("Метрів у 100г:")
                             TextField("Footage per 100g", value: $footagePer100g, formatter: NumberFormatter())
                                 .keyboardType(.numberPad)
-                            
                         }
                         .padding()
                         .textFieldStyle(.roundedBorder)
                         HStack {
-                            Text("Ціна за 100г:")
+                            Text("Ціна за 100г,(грн):")
                             TextField("Price per 100g", value: $pricePer100g, formatter: NumberFormatter())
                                 .keyboardType(.numberPad)
-                            
                         }
                         .padding()
                         .textFieldStyle(.roundedBorder)
@@ -112,31 +109,31 @@ struct AddYarnView: View {
                         HStack {
                             Text("Крамниця:")
                             TextField("Shop", text: $shop)
-                            
                         }
                         .padding()
                         .textFieldStyle(.roundedBorder)
                         DatePicker("Дата:", selection: $date, displayedComponents: [.date])
                             .padding()
-                        
                         HStack {
-                            Text("Доставка, грн:")
+                            Text("Доставка, (грн):")
                             TextField("Delivery cost", value: $deliveryPrice, formatter: NumberFormatter())
                                 .keyboardType(.numberPad)
-                            
                         }
                         .padding()
                         .textFieldStyle(.roundedBorder)
                     }
                 }
+                Section {
+                    Toggle("Перенести пряжу до архиву?", isOn: $isArchived)
+                  
+                }
                 HStack {
                     Spacer()
                     Button("Зберегти") {
-                        DataController().addYarn(name: name, image: image, compound: compound, footagePer100g: footagePer100g, pricePer100g: pricePer100g, deliveryPrice: deliveryPrice, color: color, shop: shop, date: date, originalWeight: originalWeight, context: moc)
+                        DataController().addYarn(name: name, image: image, compound: compound, footagePer100g: footagePer100g, pricePer100g: pricePer100g, deliveryPrice: deliveryPrice, color: color, shop: shop, date: date, originalWeight: originalWeight, isArchived: isArchived, context: moc)
                         dismiss()
                     }
                     .buttonModif
-
                     Spacer()
                 }
             }

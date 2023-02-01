@@ -103,7 +103,7 @@ struct AddProjectView: View {
                             TextField("Number of needles", value: $needlesNumber, formatter: NumberFormatter())
                         }.padding()
                     }
-                    // Text("Собівартість виробу: \(yarnAndProj.cost)")
+                    
                 }
                 Section {
                     Toggle("На продаж", isOn: $forSale).padding()
@@ -125,8 +125,9 @@ struct AddProjectView: View {
                             }.padding()
                             Text("Загальні витрати: \(additExpense)")
                                 .padding()
+                            
                             HStack {
-                                Text("Вартість виробу:")
+                                Text("Ціна виробу:")
                                 TextField("Sale cost", value: $saleCost, formatter: NumberFormatter())
                             }.padding()
                             Text("Прибуток: \(margin)")
@@ -134,27 +135,15 @@ struct AddProjectView: View {
                         }
                     }
                 }
-                
-//             Section {
-//                    Text("Пряжа")
-//                        .bold()
-//                        .foregroundColor(.mint)
-//                 AddYarnProjView()
-//       
-//                }
-                Section {
                     HStack {
                         Spacer()
                         Button("Зберегти") {
-                         project = DataController().addProject(name: name, image: image, totalWeight: totalWeight, startDate: startDate, finishDate: finishDate, forSale: forSale, sold: sold, size: size, needlesNumber: needlesNumber, marketplace: marketplace, saleDate: saleDate, comission: comission, deliveryCost: deliveryCost, saleCost: saleCost, context: moc)
+                        DataController().addProject(name: name, image: image, totalWeight: totalWeight, startDate: startDate, finishDate: finishDate, forSale: forSale, sold: sold, size: size, needlesNumber: needlesNumber, marketplace: marketplace, saleDate: saleDate, comission: comission, deliveryCost: deliveryCost, saleCost: saleCost, context: moc)
                           dismiss()
-                            
                         }
                         .buttonModif
                         Spacer()
                     }
-          
-                }
             }
         }
     }

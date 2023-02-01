@@ -26,15 +26,14 @@ struct EditYarnView: View {
     @State private var color: String = ""
     @State private var id = UUID()
     @State private var pricePer100g: Double = 1
-    @State private var yarnWeightInProject: Double = 0
     @State private var imagePicker = false
     @State private var currentWeight: Double = 0
+    @State private var isArchived = false
     
  
     
     var body: some View {
         NavigationView {
-            //VStack {
             Form {
                 Section {
                     HStack {
@@ -43,9 +42,9 @@ struct EditYarnView: View {
                             .onAppear {
                                 image = UIImage(data: yarn.image!)!
                             }
-                        //                .sheet(isPresented: $imagePicker) {
-                        //                    ImagePickerView(selectedImage: $image)
-                        //                }
+                            .sheet(isPresented: $imagePicker) {
+                                ImagePickerView(selectedImage: $image)
+                            }
                         Button {
                             imagePicker.toggle()
                         } label: {
@@ -147,8 +146,6 @@ struct EditYarnView: View {
                             .onAppear {
                                 date = yarn.date!
                             }
-                        
-                        
                     }
                 }
                 Section {
@@ -156,10 +153,9 @@ struct EditYarnView: View {
                         Text("Параметри для розрахунків")
                             .bold()
                             .foregroundColor(.indigo)
-                        // Text("Поточна вага: \(yarnAndProj.currentYarnWeight)")
-                        HStack {
+                        VStack(alignment: .leading) {
                             HStack {
-                                Text("Доставка, грн:")
+                                Text("Доставка, (грн):")
                                 TextField("\(yarn.deliveryPrice)", value: $deliveryPrice, formatter: NumberFormatter())
                                     .keyboardType(.numberPad)
                                     .onAppear {
@@ -168,22 +164,25 @@ struct EditYarnView: View {
                             }
                             .padding(.horizontal, 6)
                             .textFieldStyle(.roundedBorder)
-                            Text("Ціна за 1г, (грн): \(yarn.pricePer1g)")
-                                .padding()
-                            Text("Загальні витрати: \(yarn.totalExpense) грн")
-                                .padding()
+                            Text("Ціна за 1г,(грн): \(yarn.pricePer1g)")
+                            Text("Загальні витрати,(грн): \(yarn.totalExpense)")
                                 .bold()
                                 .foregroundColor(.purple)
-                            //Text("Поточна вага: \(yarnAndProject.currentYarnWeight ?? yarn.originalWeight)")
                         }
-                        .padding()
                     }
+                }
+                Section {
+                    Toggle("Перенести пряжу до архиву?", isOn: $isArchived)
+                        .onAppear {
+                            isArchived = yarn.isArchived
+                        }
+                  
                 }
                 Section {
                     VStack {
                         Text("Вироби")
                             .bold()
-                            .foregroundColor(.purple)
+                            .foregroundColor(.indigo)
                             .padding()
                         List {
                             ForEach(yarn.yarnWeightArray) { yarnProj in
@@ -206,7 +205,7 @@ struct EditYarnView: View {
                 HStack {
                     Spacer()
                     Button("Зберегти") {
-                        DataController().editYarn(yarn: yarn, name: name, image: image, compound: compound, footagePer100g: footagePer100g, pricePer100g: pricePer100g, deliveryPrice: deliveryPrice, color: color, shop: shop, date: date, originalWeight: originalWeight, context: moc)
+                        DataController().editYarn(yarn: yarn, name: name, image: image, compound: compound, footagePer100g: footagePer100g, pricePer100g: pricePer100g, deliveryPrice: deliveryPrice, color: color, shop: shop, date: date, originalWeight: originalWeight, isArchived: isArchived, context: moc)
                         dismiss()
                     }
                     .buttonModif

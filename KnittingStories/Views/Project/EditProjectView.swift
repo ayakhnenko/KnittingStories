@@ -34,16 +34,16 @@ struct EditProjectView: View {
     @State private var sold: Bool = false
    // @State public var yarnForProject: [YarnProj]
     
-    @State public var yarnForProjectArray: [YarnProj] = []
+   // @State public var yarnForProjectArray: [YarnProj] = []
    // @State private var array: [YarnProj]
     @State private var showingAlert = false
-    @State private var yarnPicker = false
-    
-    @State private var yarn: Yarn?
-    @State private var yp: YarnProj?
-    @State private var yarnWeightInProj: Double = 0
-    @State private var fromYarn: Yarn?
-    @State private var fromProj: Project?
+//    @State private var yarnPicker = false
+//
+//    @State private var yarn: Yarn?
+  //  @State private var yp: YarnProj?
+//    @State private var yarnWeightInProj: Double = 0
+//    @State private var fromYarn: Yarn?
+//    @State private var fromProj: Project?
     @State private var showYarnList = false
     
     @FetchRequest(sortDescriptors: [NSSortDescriptor(keyPath: \Yarn.date, ascending: true)], animation: .default) private var yarns: FetchedResults<Yarn>
@@ -73,9 +73,9 @@ struct EditProjectView: View {
                     }
                     HStack {
                         Text("Назва:")
-                        TextField("\(project.name!)", text: $name)
+                        TextField("\(project.wrappedName)", text: $name)
                             .onAppear {
-                                name = project.name ?? ""
+                                name = project.wrappedName
                             }
                     }
                     .padding(.horizontal, 6)
@@ -100,7 +100,7 @@ struct EditProjectView: View {
                 Text("Пряжа")
                     .bold()
                     .foregroundColor(.mint)
-                AddYarnProjView()
+                AddYarnProjView(fromProj: project)
                
            }
             
@@ -117,11 +117,17 @@ struct EditProjectView: View {
                         TextField("Number of needles", value: $needlesNumber, formatter: NumberFormatter())
                     }.padding()
                 }
-                // Text("Собівартість виробу: \(yarnProj.cost)")
+                
             }
           Section {
                 Toggle("На продаж", isOn: $forSale)
+                  .onAppear {
+                      forSale = project.forSale
+                  }
                 Toggle("Продано", isOn: $sold)
+                  .onAppear {
+                      sold = project.sold
+                  }
                 
             }
             if sold {
@@ -130,23 +136,20 @@ struct EditProjectView: View {
                         HStack {
                             Text("Маркетплейс:")
                             TextField("Marketplace", text: $marketplace)
-                            
                         }
-                        DatePicker("Дата продажу:", selection: $saleDate, displayedComponents: [.date])
-                        
                         HStack {
                             Text("Комісія:")
                             TextField("Comission", value: $comission, formatter: NumberFormatter())
-                            
                         }
+                        Text("Собівартість виробу: \(project.cost)")
+                        DatePicker("Дата продажу:", selection: $saleDate, displayedComponents: [.date])
                         HStack {
                             Text("Вартість доставки:")
                             TextField("Delivery cost", value: $deliveryCost, formatter: NumberFormatter())
-                            
                         }
                         Text("Загальні витрати: \(additExpense)")
                         HStack {
-                            Text("Вартість виробу:")
+                            Text("Ціна виробу:")
                             TextField("Sale cost", value: $saleCost, formatter: NumberFormatter())
                         }
                         Text("Прибуток: \(margin)")

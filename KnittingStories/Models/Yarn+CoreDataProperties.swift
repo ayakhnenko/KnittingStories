@@ -27,6 +27,7 @@ extension Yarn {
     @NSManaged public var originalWeight: Double
     @NSManaged public var pricePer100g: Double
     @NSManaged public var shop: String?
+    @NSManaged public var isArchived: Bool
     @NSManaged public var yarnWeight: NSSet?
     
 

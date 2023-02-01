@@ -19,20 +19,22 @@ struct ContentView: View {
         TabView(selection: $selectedView) {
             YarnList()
                 .tabItem {
-                        Text("🧶")
-                            .font(.largeTitle)
-                            
-                        // Image(systemName: "circle.fill")
-                   
-                        Text("Пряжа")
-                    
+                        Text("Пряжа🧶")
                 }.tag(1)
                 
             ProjectList()
                 .tabItem {
-                    Image(systemName: "tshirt.fill")
-                    Text("Вироби")
+                        Text("Вироби🧣")
                 }.tag(2)
+            
+            ArchivedYarnListView()
+                .tabItem {
+                    Text("Архів пряжі🗄")
+                }.tag(3)
+            SoldProjectListView()
+                .tabItem {
+                    Text("Продані вироби💵")
+                }.tag(4)
         }
     }
 }
