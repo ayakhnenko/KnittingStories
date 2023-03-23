@@ -2,7 +2,7 @@
 //  YarnProj+CoreDataClass.swift
 //  KnittingStories
 //
-//  Created by Alisa Yakhnenko on 13.01.2023.
+//  Created by Alisa Yakhnenko on 25.02.2023.
 //
 //
 
@@ -12,4 +12,6 @@ import CoreData
 @objc(YarnProj)
 public class YarnProj: NSManagedObject {
 
+ 
+    
 }

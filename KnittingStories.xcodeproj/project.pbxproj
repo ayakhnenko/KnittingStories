@@ -21,18 +21,23 @@
 		003F917B28F2EBF20040BD12 /* ProjectList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 003F917A28F2EBF20040BD12 /* ProjectList.swift */; };
 		003F917D28F2ED180040BD12 /* EditYarnView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 003F917C28F2ED180040BD12 /* EditYarnView.swift */; };
 		003F918728F56BA80040BD12 /* AddYarnView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 003F918628F56BA80040BD12 /* AddYarnView.swift */; };
+		0042669429A9E7E200D510EA /* YarnProj+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0042669229A9E7E200D510EA /* YarnProj+CoreDataClass.swift */; };
+		0042669529A9E7E200D510EA /* YarnProj+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0042669329A9E7E200D510EA /* YarnProj+CoreDataProperties.swift */; };
+		0042669D29B61A8000D510EA /* NavigationStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0042669C29B61A8000D510EA /* NavigationStorage.swift */; };
+		0042669F29B61AB600D510EA /* NavigationPathItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0042669E29B61AB600D510EA /* NavigationPathItem.swift */; };
+		004266A329B8858A00D510EA /* ProjectOnSaleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 004266A229B8858A00D510EA /* ProjectOnSaleView.swift */; };
 		004E77572920EF4000B4BE70 /* YarnView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 004E77562920EF4000B4BE70 /* YarnView.swift */; };
 		004E775F292260A000B4BE70 /* ProjectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 004E775E292260A000B4BE70 /* ProjectView.swift */; };
-		0094729A2971730B008D1082 /* Project+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009472942971730B008D1082 /* Project+CoreDataClass.swift */; };
-		0094729B2971730B008D1082 /* Project+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009472952971730B008D1082 /* Project+CoreDataProperties.swift */; };
-		0094729C2971730B008D1082 /* Yarn+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009472962971730B008D1082 /* Yarn+CoreDataClass.swift */; };
-		0094729D2971730B008D1082 /* Yarn+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009472972971730B008D1082 /* Yarn+CoreDataProperties.swift */; };
-		0094729E2971730B008D1082 /* YarnProj+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009472982971730B008D1082 /* YarnProj+CoreDataClass.swift */; };
-		0094729F2971730B008D1082 /* YarnProj+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009472992971730B008D1082 /* YarnProj+CoreDataProperties.swift */; };
-		009472A32987D4CC008D1082 /* Image + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009472A22987D4CC008D1082 /* Image + Extension.swift */; };
-		009472A72987E7B5008D1082 /* Button + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009472A62987E7B5008D1082 /* Button + Extension.swift */; };
-		009472A92989173E008D1082 /* UIImageTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009472A82989173E008D1082 /* UIImageTransformer.swift */; };
-		009472AB29895691008D1082 /* Double + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009472AA29895691008D1082 /* Double + Extension.swift */; };
+		005ED9F6298AC0900013AC16 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 005ED9F5298AC0900013AC16 /* Extensions.swift */; };
+		005EDA3F299B8FB20013AC16 /* YarnListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 005EDA3E299B8FB20013AC16 /* YarnListViewModel.swift */; };
+		005EDA41299B98650013AC16 /* BaseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 005EDA40299B98650013AC16 /* BaseModel.swift */; };
+		005EDA43299B9D930013AC16 /* DetailYarnViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 005EDA42299B9D930013AC16 /* DetailYarnViewModel.swift */; };
+		005EDA4B299BCC550013AC16 /* Yarn + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 005EDA4A299BCC550013AC16 /* Yarn + Extension.swift */; };
+		005EDA4D299E3CE70013AC16 /* Project + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 005EDA4C299E3CE70013AC16 /* Project + Extension.swift */; };
+		005EDA51299E65870013AC16 /* ProjectListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 005EDA50299E65870013AC16 /* ProjectListViewModel.swift */; };
+		005EDA53299E6A340013AC16 /* DetailProjectViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 005EDA52299E6A340013AC16 /* DetailProjectViewModel.swift */; };
+		005EDA56299E7F370013AC16 /* YarnProjViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 005EDA55299E7F370013AC16 /* YarnProjViewModel.swift */; };
+		005EDA58299E80990013AC16 /* YarnProj + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 005EDA57299E80990013AC16 /* YarnProj + Extension.swift */; };
 		009472AD298A8635008D1082 /* ArchivedYarnListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009472AC298A8635008D1082 /* ArchivedYarnListView.swift */; };
 		009472AF298A964E008D1082 /* SoldProjectListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009472AE298A964E008D1082 /* SoldProjectListView.swift */; };
 /* End PBXBuildFile section */
@@ -53,18 +58,24 @@
 		003F917A28F2EBF20040BD12 /* ProjectList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectList.swift; sourceTree = "<group>"; };
 		003F917C28F2ED180040BD12 /* EditYarnView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditYarnView.swift; sourceTree = "<group>"; };
 		003F918628F56BA80040BD12 /* AddYarnView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddYarnView.swift; sourceTree = "<group>"; };
+		0042669229A9E7E200D510EA /* YarnProj+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "YarnProj+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
+		0042669329A9E7E200D510EA /* YarnProj+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "YarnProj+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
+		0042669C29B61A8000D510EA /* NavigationStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationStorage.swift; sourceTree = "<group>"; };
+		0042669E29B61AB600D510EA /* NavigationPathItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationPathItem.swift; sourceTree = "<group>"; };
+		004266A229B8858A00D510EA /* ProjectOnSaleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectOnSaleView.swift; sourceTree = "<group>"; };
+		0047269229C7155C00DF62F6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		004E77562920EF4000B4BE70 /* YarnView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YarnView.swift; sourceTree = "<group>"; };
 		004E775E292260A000B4BE70 /* ProjectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectView.swift; sourceTree = "<group>"; };
-		009472942971730B008D1082 /* Project+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Project+CoreDataClass.swift"; sourceTree = "<group>"; };
-		009472952971730B008D1082 /* Project+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Project+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		009472962971730B008D1082 /* Yarn+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Yarn+CoreDataClass.swift"; sourceTree = "<group>"; };
-		009472972971730B008D1082 /* Yarn+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Yarn+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		009472982971730B008D1082 /* YarnProj+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "YarnProj+CoreDataClass.swift"; sourceTree = "<group>"; };
-		009472992971730B008D1082 /* YarnProj+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "YarnProj+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		009472A22987D4CC008D1082 /* Image + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Image + Extension.swift"; sourceTree = "<group>"; };
-		009472A62987E7B5008D1082 /* Button + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Button + Extension.swift"; sourceTree = "<group>"; };
-		009472A82989173E008D1082 /* UIImageTransformer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageTransformer.swift; sourceTree = "<group>"; };
-		009472AA29895691008D1082 /* Double + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double + Extension.swift"; sourceTree = "<group>"; };
+		005ED9F5298AC0900013AC16 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		005EDA3E299B8FB20013AC16 /* YarnListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YarnListViewModel.swift; sourceTree = "<group>"; };
+		005EDA40299B98650013AC16 /* BaseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseModel.swift; sourceTree = "<group>"; };
+		005EDA42299B9D930013AC16 /* DetailYarnViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailYarnViewModel.swift; sourceTree = "<group>"; };
+		005EDA4A299BCC550013AC16 /* Yarn + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Yarn + Extension.swift"; sourceTree = "<group>"; };
+		005EDA4C299E3CE70013AC16 /* Project + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Project + Extension.swift"; sourceTree = "<group>"; };
+		005EDA50299E65870013AC16 /* ProjectListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectListViewModel.swift; sourceTree = "<group>"; };
+		005EDA52299E6A340013AC16 /* DetailProjectViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailProjectViewModel.swift; sourceTree = "<group>"; };
+		005EDA55299E7F370013AC16 /* YarnProjViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YarnProjViewModel.swift; sourceTree = "<group>"; };
+		005EDA57299E80990013AC16 /* YarnProj + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "YarnProj + Extension.swift"; sourceTree = "<group>"; };
 		009472AC298A8635008D1082 /* ArchivedYarnListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchivedYarnListView.swift; sourceTree = "<group>"; };
 		009472AE298A964E008D1082 /* SoldProjectListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoldProjectListView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -107,12 +118,16 @@
 		003F915928F2BF5C0040BD12 /* KnittingStories */ = {
 			isa = PBXGroup;
 			children = (
+				0047269229C7155C00DF62F6 /* Info.plist */,
 				003F915A28F2BF5C0040BD12 /* KnittingStoriesApp.swift */,
+				005EDA3D299B8F980013AC16 /* ViewModels */,
 				003F916F28F2D0B10040BD12 /* Extensions */,
 				003F916828F2BF6E0040BD12 /* Models */,
 				003F916C28F2CEC50040BD12 /* Views */,
 				003F915E28F2BF5E0040BD12 /* Assets.xcassets */,
 				003F916028F2BF5E0040BD12 /* Preview Content */,
+				0042669C29B61A8000D510EA /* NavigationStorage.swift */,
+				0042669E29B61AB600D510EA /* NavigationPathItem.swift */,
 			);
 			path = KnittingStories;
 			sourceTree = "<group>";
@@ -128,12 +143,9 @@
 		003F916828F2BF6E0040BD12 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				009472962971730B008D1082 /* Yarn+CoreDataClass.swift */,
-				009472972971730B008D1082 /* Yarn+CoreDataProperties.swift */,
-				009472942971730B008D1082 /* Project+CoreDataClass.swift */,
-				009472952971730B008D1082 /* Project+CoreDataProperties.swift */,
-				009472982971730B008D1082 /* YarnProj+CoreDataClass.swift */,
-				009472992971730B008D1082 /* YarnProj+CoreDataProperties.swift */,
+				0042669229A9E7E200D510EA /* YarnProj+CoreDataClass.swift */,
+				0042669329A9E7E200D510EA /* YarnProj+CoreDataProperties.swift */,
+				005EDA40299B98650013AC16 /* BaseModel.swift */,
 				003F916928F2BF7D0040BD12 /* KnittingStories.xcdatamodeld */,
 				003F916D28F2CF8A0040BD12 /* DataController.swift */,
 				00329C0228F96CB900216444 /* ImagePickerView.swift */,
@@ -155,10 +167,10 @@
 		003F916F28F2D0B10040BD12 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				009472A22987D4CC008D1082 /* Image + Extension.swift */,
-				009472A62987E7B5008D1082 /* Button + Extension.swift */,
-				009472A82989173E008D1082 /* UIImageTransformer.swift */,
-				009472AA29895691008D1082 /* Double + Extension.swift */,
+				005ED9F5298AC0900013AC16 /* Extensions.swift */,
+				005EDA4A299BCC550013AC16 /* Yarn + Extension.swift */,
+				005EDA4C299E3CE70013AC16 /* Project + Extension.swift */,
+				005EDA57299E80990013AC16 /* YarnProj + Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -183,8 +195,45 @@
 				004E775E292260A000B4BE70 /* ProjectView.swift */,
 				00329C0628FE8C7F00216444 /* EditProjectView.swift */,
 				009472AE298A964E008D1082 /* SoldProjectListView.swift */,
+				004266A229B8858A00D510EA /* ProjectOnSaleView.swift */,
 			);
 			path = Project;
+			sourceTree = "<group>";
+		};
+		005EDA3D299B8F980013AC16 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				005EDA4E299E65520013AC16 /* Yarn */,
+				005EDA4F299E655F0013AC16 /* Project */,
+				005EDA54299E7F1D0013AC16 /* YarnProj */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		005EDA4E299E65520013AC16 /* Yarn */ = {
+			isa = PBXGroup;
+			children = (
+				005EDA3E299B8FB20013AC16 /* YarnListViewModel.swift */,
+				005EDA42299B9D930013AC16 /* DetailYarnViewModel.swift */,
+			);
+			path = Yarn;
+			sourceTree = "<group>";
+		};
+		005EDA4F299E655F0013AC16 /* Project */ = {
+			isa = PBXGroup;
+			children = (
+				005EDA50299E65870013AC16 /* ProjectListViewModel.swift */,
+				005EDA52299E6A340013AC16 /* DetailProjectViewModel.swift */,
+			);
+			path = Project;
+			sourceTree = "<group>";
+		};
+		005EDA54299E7F1D0013AC16 /* YarnProj */ = {
+			isa = PBXGroup;
+			children = (
+				005EDA55299E7F370013AC16 /* YarnProjViewModel.swift */,
+			);
+			path = YarnProj;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -258,30 +307,35 @@
 			buildActionMask = 2147483647;
 			files = (
 				003F915D28F2BF5C0040BD12 /* ContentView.swift in Sources */,
-				0094729E2971730B008D1082 /* YarnProj+CoreDataClass.swift in Sources */,
-				009472A92989173E008D1082 /* UIImageTransformer.swift in Sources */,
-				0094729B2971730B008D1082 /* Project+CoreDataProperties.swift in Sources */,
+				005EDA53299E6A340013AC16 /* DetailProjectViewModel.swift in Sources */,
+				0042669429A9E7E200D510EA /* YarnProj+CoreDataClass.swift in Sources */,
+				0042669529A9E7E200D510EA /* YarnProj+CoreDataProperties.swift in Sources */,
+				005EDA41299B98650013AC16 /* BaseModel.swift in Sources */,
+				004266A329B8858A00D510EA /* ProjectOnSaleView.swift in Sources */,
+				005EDA58299E80990013AC16 /* YarnProj + Extension.swift in Sources */,
+				005EDA3F299B8FB20013AC16 /* YarnListViewModel.swift in Sources */,
+				005EDA51299E65870013AC16 /* ProjectListViewModel.swift in Sources */,
 				009472AF298A964E008D1082 /* SoldProjectListView.swift in Sources */,
 				003F916E28F2CF8A0040BD12 /* DataController.swift in Sources */,
 				0039CE8A29476B10005E7C5F /* AddYarnProjView.swift in Sources */,
 				003F917928F2E8F10040BD12 /* YarnList.swift in Sources */,
 				00329C0328F96CB900216444 /* ImagePickerView.swift in Sources */,
+				005ED9F6298AC0900013AC16 /* Extensions.swift in Sources */,
 				009472AD298A8635008D1082 /* ArchivedYarnListView.swift in Sources */,
-				009472A32987D4CC008D1082 /* Image + Extension.swift in Sources */,
 				004E775F292260A000B4BE70 /* ProjectView.swift in Sources */,
 				003F917B28F2EBF20040BD12 /* ProjectList.swift in Sources */,
-				0094729D2971730B008D1082 /* Yarn+CoreDataProperties.swift in Sources */,
-				0094729A2971730B008D1082 /* Project+CoreDataClass.swift in Sources */,
-				0094729F2971730B008D1082 /* YarnProj+CoreDataProperties.swift in Sources */,
+				005EDA4D299E3CE70013AC16 /* Project + Extension.swift in Sources */,
+				005EDA4B299BCC550013AC16 /* Yarn + Extension.swift in Sources */,
 				003F915B28F2BF5C0040BD12 /* KnittingStoriesApp.swift in Sources */,
 				003F916B28F2BF7D0040BD12 /* KnittingStories.xcdatamodeld in Sources */,
-				009472A72987E7B5008D1082 /* Button + Extension.swift in Sources */,
+				0042669F29B61AB600D510EA /* NavigationPathItem.swift in Sources */,
 				00329C0728FE8C7F00216444 /* EditProjectView.swift in Sources */,
-				0094729C2971730B008D1082 /* Yarn+CoreDataClass.swift in Sources */,
 				00329C0928FE8F6D00216444 /* AddProjectView.swift in Sources */,
 				004E77572920EF4000B4BE70 /* YarnView.swift in Sources */,
+				005EDA56299E7F370013AC16 /* YarnProjViewModel.swift in Sources */,
 				003F918728F56BA80040BD12 /* AddYarnView.swift in Sources */,
-				009472AB29895691008D1082 /* Double + Extension.swift in Sources */,
+				005EDA43299B9D930013AC16 /* DetailYarnViewModel.swift in Sources */,
+				0042669D29B61A8000D510EA /* NavigationStorage.swift in Sources */,
 				003F917D28F2ED180040BD12 /* EditYarnView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -414,7 +468,7 @@
 				DEVELOPMENT_TEAM = 68J6V7NGCT;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_FILE = KnittingStories/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -444,7 +498,7 @@
 				DEVELOPMENT_TEAM = 68J6V7NGCT;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_FILE = KnittingStories/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";

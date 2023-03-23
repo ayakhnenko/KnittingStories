@@ -9,57 +9,28 @@ import SwiftUI
 
 struct EditProjectView: View {
     
-    @Environment(\.managedObjectContext) var moc
+    @Environment(\.managedObjectContext) var viewContext
     @Environment(\.dismiss) var dismiss
+    @StateObject private var storage = NavigationStorage.shared
+   
+    @ObservedObject var vm: DetailProjectViewModel
     
-    @State private var additExpense: Double = 0
-    @State private var comission: Double = 0
-    @State private var comments: String = ""
-    @State private var deliveryCost: Double = 0
-    @State private var finishDate = Date()
-    @State private var forSale: Bool = false
-    @State private var id = UUID()
-    @State private var image = UIImage(imageLiteralResourceName: "llama")
-    @State private var marketplace: String = ""
-    @State private var name: String = ""
-    @State private var needlesNumber: Int16 = 0
-    @State private var saleDate = Date()
-    @State private var size: String = ""
-    @State private var startDate = Date()
-    @State private var totalWeight: Double = 0
-    @State private var yarnWeight: Double = 0
-    @State private var saleCost: Double = 0
-    @State private var margin: Double = 0
+    init(vm: DetailProjectViewModel) {
+        self.vm = vm
+    }
+    
+    @State private var showYarnProjView = false
     @State private var imagePicker = false
-    @State private var sold: Bool = false
-   // @State public var yarnForProject: [YarnProj]
-    
-   // @State public var yarnForProjectArray: [YarnProj] = []
-   // @State private var array: [YarnProj]
-    @State private var showingAlert = false
-//    @State private var yarnPicker = false
-//
-//    @State private var yarn: Yarn?
-  //  @State private var yp: YarnProj?
-//    @State private var yarnWeightInProj: Double = 0
-//    @State private var fromYarn: Yarn?
-//    @State private var fromProj: Project?
-    @State private var showYarnList = false
-    
-    @FetchRequest(sortDescriptors: [NSSortDescriptor(keyPath: \Yarn.date, ascending: true)], animation: .default) private var yarns: FetchedResults<Yarn>
-   public var project: FetchedResults<Project>.Element
-    
-
-    
+   
     var body: some View {
         Form {
             Section {
                 VStack {
                     HStack {
-                        Image(uiImage: UIImage(data: project.image!)!)
-                            .bigCircle
+                        Image(uiImage: vm.project!.image)
+                            .smallProjPhoto
                             .onAppear {
-                                image = UIImage(data: project.image!)!
+                                vm.image = vm.project!.image
                             }
                         
                         Button {
@@ -68,30 +39,30 @@ struct EditProjectView: View {
                             Text("Змінити світлину")
                         }
                         .sheet(isPresented: $imagePicker) {
-                            ImagePickerView(selectedImage: $image)
+                            ImagePickerView(selectedImage: $vm.image)
                         }
                     }
                     HStack {
                         Text("Назва:")
-                        TextField("\(project.wrappedName)", text: $name)
+                        TextField(vm.project!.name, text: $vm.name)
                             .onAppear {
-                                name = project.wrappedName
+                                vm.name = vm.project!.name
                             }
                     }
                     .padding(.horizontal, 6)
                     .textFieldStyle(.roundedBorder)
                     HStack {
                         Text("Загальна вага")
-                        TextField("\(project.totalWeight)", value: $totalWeight, formatter: NumberFormatter())
+                        TextField(String(vm.project!.totalWeight), value: $vm.totalWeight, formatter: NumberFormatter())
                             .onAppear {
-                                totalWeight = project.totalWeight
+                                vm.totalWeight = vm.project!.totalWeight
                             }
                     }
                     HStack {
                         Text("Розмір виробу:")
-                        TextField(project.size!, text: $size)
+                        TextField(vm.project!.size, text: $vm.size)
                             .onAppear {
-                                size = project.size ?? ""
+                                vm.size = vm.project!.size
                             }
                     }
                 }
@@ -100,59 +71,107 @@ struct EditProjectView: View {
                 Text("Пряжа")
                     .bold()
                     .foregroundColor(.mint)
-                AddYarnProjView(fromProj: project)
-               
+                List {
+                    ForEach(vm.project!.project.yarnForProjectArray) { yarnProj in
+                        HStack {
+                            Image(uiImage: UIImage(data: (yarnProj.fromYarn!.image)!) ?? UIImage(imageLiteralResourceName: "llama"))
+                                    .smallCircle
+                            Text(yarnProj.fromYarn!.wrappedName)
+                            Text("\(yarnProj.yarnWeightInProj) г")
+                        }
+                        
+                    }
+                }
+                Button("Обрати пряжу") {
+                    showYarnProjView.toggle()
+                    
+                
+                    
+                }.sheet(isPresented: $showYarnProjView) {
+                    AddYarnProjView(vm: YarnProjViewModel(context: viewContext, fromProj: vm.project!.project, parent: self.vm))
+                }
            }
             
             Section {
                 VStack {
                     Text("Деталі процесу")
                     VStack {
-                        DatePicker("Початок:", selection: $startDate, displayedComponents: [.date])
-                        DatePicker("Кінець:", selection: $finishDate, displayedComponents: [.date])
-                    }.padding()
+                        DatePicker("Початок:", selection: $vm.startDate, displayedComponents: [.date])
+                            .onAppear {
+                                vm.startDate = vm.project!.startDate
+                            }
+                        DatePicker("Кінець:", selection: $vm.finishDate, displayedComponents: [.date])
+                            .onAppear {
+                                vm.finishDate = vm.project!.finishDate
+                            }
+                    }
                     
                     HStack {
                         Text("Розмір спиць:")
-                        TextField("Number of needles", value: $needlesNumber, formatter: NumberFormatter())
-                    }.padding()
+                        TextField("Number of needles", text: $vm.needlesNumber)
+                            .onAppear {
+                                vm.needlesNumber = vm.project!.needlesNumber
+                            }
+                    }
+                    HStack {
+                        Text("Собівартість виробу: \(vm.project!.cost.roundToPlaces())")
+                        Spacer()
+                    }
+                    
                 }
                 
             }
           Section {
-                Toggle("На продаж", isOn: $forSale)
+              Toggle("На продаж", isOn: $vm.forSale)
                   .onAppear {
-                      forSale = project.forSale
+                      vm.forSale = vm.project!.forSale
                   }
-                Toggle("Продано", isOn: $sold)
+              Toggle("Продано", isOn: $vm.sold)
                   .onAppear {
-                      sold = project.sold
+                      vm.sold = vm.project!.sold
                   }
                 
             }
-            if sold {
+            if vm.sold {
                 Section {
                     VStack {
                         HStack {
                             Text("Маркетплейс:")
-                            TextField("Marketplace", text: $marketplace)
+                            TextField("Marketplace", text: $vm.marketplace)
+                                .onAppear {
+                                    vm.marketplace = vm.project!.marketplace
+                                }
                         }
                         HStack {
                             Text("Комісія:")
-                            TextField("Comission", value: $comission, formatter: NumberFormatter())
+                            TextField("Comission", value: $vm.comission, formatter: NumberFormatter())
+                                .onAppear {
+                                    vm.comission = vm.project!.comission
+                                }
                         }
-                        Text("Собівартість виробу: \(project.cost)")
-                        DatePicker("Дата продажу:", selection: $saleDate, displayedComponents: [.date])
+                        
+                        DatePicker("Дата продажу:", selection: $vm.saleDate, displayedComponents: [.date])
+                            .onAppear {
+                                vm.saleDate = vm.project!.saleDate
+                            }
                         HStack {
                             Text("Вартість доставки:")
-                            TextField("Delivery cost", value: $deliveryCost, formatter: NumberFormatter())
+                            TextField("Delivery cost", value: $vm.deliveryCost, formatter: NumberFormatter())
+                                .onAppear {
+                                    vm.deliveryCost = vm.project!.deliveryCost
+                                }
                         }
-                        Text("Загальні витрати: \(additExpense)")
-                        HStack {
-                            Text("Ціна виробу:")
-                            TextField("Sale cost", value: $saleCost, formatter: NumberFormatter())
+                        VStack(alignment: .leading) {
+                            Text("Загальні витрати: \(vm.project!.additExpense)")
+                            HStack {
+                                Text("Ціна виробу:")
+                                TextField("Sale cost", value: $vm.saleCost, formatter: NumberFormatter())
+                                    .onAppear {
+                                        vm.saleCost = vm.project!.saleCost
+                                    }
+                            }
+                            Text("Прибуток: \(vm.margin)")
                         }
-                        Text("Прибуток: \(margin)")
                     }
                 }
             }
@@ -161,11 +180,9 @@ struct EditProjectView: View {
         Section {
             HStack {
                 Spacer()
-                Button {
-                    DataController().editProject(project: project, name: name, image: image, totalWeight: totalWeight, startDate: startDate, finishDate: finishDate, forSale: forSale, sold: sold, size: size, needlesNumber: needlesNumber, marketplace: marketplace, saleDate: saleDate, comission: comission, deliveryCost: deliveryCost, saleCost: saleCost, context: moc)
-                    dismiss()
-                } label: {
-                    Text("Зберегти")
+                Button("Зберегти") {
+                    vm.editProject(project: vm.project!.project, name: vm.name, image: vm.image, totalWeight: vm.totalWeight, startDate: vm.startDate, finishDate: vm.finishDate, forSale: vm.forSale, sold: vm.sold, size: vm.size, needlesNumber: vm.needlesNumber, marketplace: vm.marketplace, saleDate: vm.saleDate, comission: vm.comission, deliveryCost: vm.deliveryCost, saleCost: vm.saleCost)
+                    self.dismiss()
                 }
                 .buttonModif
                 Spacer()

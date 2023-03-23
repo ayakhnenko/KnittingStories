@@ -9,40 +9,21 @@ import SwiftUI
 
 struct AddProjectView: View {
     
-    @Environment(\.managedObjectContext) var moc
+   // @Environment(\.managedObjectContext) var viewContext
     @Environment(\.dismiss) var dismiss
     
-    @State private var additExpense: Double = 0
-    @State private var comission: Double = 0
-    @State private var comments: String = ""
-    @State private var deliveryCost: Double = 0
-    @State private var finishDate = Date()
-    @State private var forSale: Bool = false
-    @State private var id = UUID()
-    @State private var image = UIImage(imageLiteralResourceName: "llama")
-    @State private var marketplace: String = ""
-    @State private var name: String = ""
-    @State private var needlesNumber: Int16 = 0
-    @State private var saleDate = Date()
-    @State private var size: String = ""
-    @State private var startDate = Date()
-    @State private var totalWeight: Double = 0
-    @State private var saleCost: Double = 0
-    @State private var margin: Double = 0
-    @State private var sold: Bool = false
-    @State private var showYarnList = false
-    @State private var imagePicker = false
+    @ObservedObject var vm: DetailProjectViewModel
     
+    init(vm: DetailProjectViewModel) {
+        self.vm = vm
+    }
+    
+    @State private var imagePicker = false
     @State private var showTheButton = false
     @State private var showingAlert = false
     @State private var showingYP = false
     @State private var showProjList = false
-    @State private var yarnForProjectArray = [YarnProj]()
-    @State private var yarnForProject = [YarnProj]()
-    @State private var yp: YarnProj?
-    @State private var yarnWeightInProj: Double = 0
-    @State private var project: Project?
-  
+
  //  @FetchRequest(sortDescriptors: [NSSortDescriptor(keyPath: \Yarn.date, ascending: true)], animation: .default) private var yarns: FetchedResults<Yarn>
    
     
@@ -56,19 +37,19 @@ struct AddProjectView: View {
 //    ) var yarnsForPr: FetchedResults<YarnProj>
     
     var body: some View {
-        NavigationView {
+        NavigationStack {
             Form {
                 Section {
                     HStack {
-                        Image(uiImage: image)
-                            .smallCircle
+                        Image(uiImage: vm.image)
+                            .smallProjPhoto
                         Button(action: {
                             imagePicker.toggle()
                         }, label: {
                             Text("Додати зображення")
                         })
                         .sheet(isPresented: $imagePicker) {
-                            ImagePickerView(selectedImage: $image)
+                            ImagePickerView(selectedImage: $vm.image)
                         }
                     }
                 }
@@ -76,15 +57,15 @@ struct AddProjectView: View {
                     VStack {
                         HStack {
                             Text("Назва:")
-                            TextField("Title", text: $name)
+                            TextField("Title", text: $vm.name)
                         }.padding()
                         HStack {
                             Text("Загальна вага:")
-                            TextField("Total weight", value: $totalWeight, formatter: NumberFormatter())
+                            TextField("Total weight", value: $vm.totalWeight, formatter: NumberFormatter())
                         }.padding()
                         HStack {
                             Text("Розмір виробу:")
-                            TextField("Size", text: $size)
+                            TextField("Size", text: $vm.size)
                         }.padding()
                     }
                 }
@@ -94,43 +75,43 @@ struct AddProjectView: View {
                             .bold()
                             .foregroundColor(.indigo)
                         VStack {
-                            DatePicker("Початок:", selection: $startDate, displayedComponents: [.date])
-                            DatePicker("Кінець:", selection: $finishDate, displayedComponents: [.date])
+                            DatePicker("Початок:", selection: $vm.startDate, displayedComponents: [.date])
+                            DatePicker("Кінець:", selection: $vm.finishDate, displayedComponents: [.date])
                         }.padding()
                         
                         HStack {
                             Text("Розмір спиць:")
-                            TextField("Number of needles", value: $needlesNumber, formatter: NumberFormatter())
+                            TextField("Number of needles", text: $vm.needlesNumber)
                         }.padding()
                     }
                     
                 }
                 Section {
-                    Toggle("На продаж", isOn: $forSale).padding()
-                    Toggle("Продано", isOn: $sold).padding()
-                    if sold {
+                    Toggle("На продаж", isOn: $vm.forSale).padding()
+                    Toggle("Продано", isOn: $vm.sold).padding()
+                    if vm.sold {
                         VStack(alignment: .leading) {
                             HStack {
                                 Text("Маркетплейс:")
-                                TextField("Marketplace", text: $marketplace)
+                                TextField("Marketplace", text: $vm.marketplace)
                             }.padding()
-                            DatePicker("Дата продажу:", selection: $saleDate, displayedComponents: [.date]).padding()
+                            DatePicker("Дата продажу:", selection: $vm.saleDate, displayedComponents: [.date]).padding()
                             HStack {
                                 Text("Комісія:")
-                                TextField("Comission", value: $comission, formatter: NumberFormatter())
+                                TextField("Comission", value: $vm.comission, formatter: NumberFormatter())
                             }.padding()
                             HStack {
                                 Text("Вартість доставки:")
-                                TextField("Delivery cost", value: $deliveryCost, formatter: NumberFormatter())
+                                TextField("Delivery cost", value: $vm.deliveryCost, formatter: NumberFormatter())
                             }.padding()
-                            Text("Загальні витрати: \(additExpense)")
+                            Text("Загальні витрати: \(vm.additExpenses)")
                                 .padding()
                             
                             HStack {
                                 Text("Ціна виробу:")
-                                TextField("Sale cost", value: $saleCost, formatter: NumberFormatter())
+                                TextField("Sale cost", value: $vm.saleCost, formatter: NumberFormatter())
                             }.padding()
-                            Text("Прибуток: \(margin)")
+                            Text("Прибуток: \(vm.margin)")
                                 .padding()
                         }
                     }
@@ -138,8 +119,8 @@ struct AddProjectView: View {
                     HStack {
                         Spacer()
                         Button("Зберегти") {
-                        DataController().addProject(name: name, image: image, totalWeight: totalWeight, startDate: startDate, finishDate: finishDate, forSale: forSale, sold: sold, size: size, needlesNumber: needlesNumber, marketplace: marketplace, saleDate: saleDate, comission: comission, deliveryCost: deliveryCost, saleCost: saleCost, context: moc)
-                          dismiss()
+                            vm.addProject(name: vm.name, image: vm.image, totalWeight: vm.totalWeight, startDate: vm.startDate, finishDate: vm.finishDate, forSale: vm.forSale, sold: vm.sold, size: vm.size, needlesNumber: vm.needlesNumber, marketplace: vm.marketplace, saleDate: vm.saleDate, comission: vm.comission, deliveryCost: vm.deliveryCost, saleCost: vm.saleCost)
+                            self.dismiss()
                         }
                         .buttonModif
                         Spacer()

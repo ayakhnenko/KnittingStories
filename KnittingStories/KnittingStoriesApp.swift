@@ -10,14 +10,16 @@ import SwiftUI
 @main
 struct KnittingStoriesApp: App {
     
-   
-    @StateObject private var dataController = DataController()
-    
-    
+    let viewContext = DataController.shared.container.viewContext
+
     var body: some Scene {
         WindowGroup {
             ContentView()
-                .environment(\.managedObjectContext, dataController.container.viewContext)
+           
+                .environment(\.managedObjectContext, viewContext)
         }
     }
 }
+
+
+

@@ -1,49 +1,41 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="21279" systemVersion="22C65" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
-    <entity name="Project" representedClassName="Project" syncable="YES">
-        <attribute name="additExpenses" optional="YES" attributeType="Double" defaultValueString="0" usesScalarValueType="YES"/>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="21513" systemVersion="22C65" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Project" representedClassName="Project" syncable="YES" codeGenerationType="class">
         <attribute name="comission" optional="YES" attributeType="Double" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="comments" optional="YES" attributeType="String"/>
         <attribute name="deliveryCost" optional="YES" attributeType="Double" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="finishDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="forSale" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
-        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="image" attributeType="Binary" valueTransformerName="UIImageTransformer"/>
         <attribute name="marketplace" optional="YES" attributeType="String" defaultValueString=""/>
         <attribute name="name" attributeType="String"/>
-        <attribute name="needlesNumber" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="needlesNumber" optional="YES" attributeType="String"/>
         <attribute name="saleCost" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="saleDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="size" optional="YES" attributeType="String" defaultValueString="s"/>
         <attribute name="sold" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="startDate" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="totalWeight" optional="YES" attributeType="Double" defaultValueString="0" usesScalarValueType="YES"/>
-        <relationship name="yarnForProject" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="YarnProj" inverseName="fromProj" inverseEntity="YarnProj"/>
-        <uniquenessConstraints>
-            <uniquenessConstraint>
-                <constraint value="name"/>
-            </uniquenessConstraint>
-        </uniquenessConstraints>
+        <relationship name="yarnForProject" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="YarnProj" inverseName="fromProj" inverseEntity="YarnProj"/>
     </entity>
-    <entity name="Yarn" representedClassName="Yarn" syncable="YES">
-        <attribute name="color" attributeType="String" defaultValueString=""/>
-        <attribute name="compound" attributeType="String" defaultValueString=""/>
-        <attribute name="date" attributeType="Date" usesScalarValueType="NO"/>
+    <entity name="Yarn" representedClassName="Yarn" syncable="YES" codeGenerationType="class">
+        <attribute name="color" optional="YES" attributeType="String"/>
+        <attribute name="compound" optional="YES" attributeType="String" defaultValueString=""/>
+        <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="deliveryPrice" optional="YES" attributeType="Double" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="footagePer100g" attributeType="Double" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="id" attributeType="UUID" usesScalarValueType="NO"/>
-        <attribute name="image" attributeType="Binary" valueTransformerName="UIImageTransformer"/>
+        <attribute name="footagePer100g" optional="YES" attributeType="Double" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="image" optional="YES" attributeType="Binary" valueTransformerName="UIImageTransformer"/>
         <attribute name="isArchived" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
-        <attribute name="name" attributeType="String"/>
-        <attribute name="originalWeight" attributeType="Double" defaultValueString="1" usesScalarValueType="YES"/>
-        <attribute name="pricePer100g" attributeType="Double" defaultValueString="1" usesScalarValueType="YES"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="originalWeight" optional="YES" attributeType="Double" defaultValueString="1" usesScalarValueType="YES"/>
+        <attribute name="pricePer100g" optional="YES" attributeType="Double" defaultValueString="1" usesScalarValueType="YES"/>
         <attribute name="shop" optional="YES" attributeType="String"/>
-        <relationship name="yarnWeight" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="YarnProj" inverseName="fromYarn" inverseEntity="YarnProj"/>
+        <relationship name="yarnWeight" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="YarnProj" inverseName="fromYarn" inverseEntity="YarnProj"/>
     </entity>
     <entity name="YarnProj" representedClassName="YarnProj" syncable="YES">
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="yarnWeightInProj" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
-        <relationship name="fromProj" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Project" inverseName="yarnForProject" inverseEntity="Project"/>
-        <relationship name="fromYarn" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Yarn" inverseName="yarnWeight" inverseEntity="Yarn"/>
+        <relationship name="fromProj" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Project" inverseName="yarnForProject" inverseEntity="Project"/>
+        <relationship name="fromYarn" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Yarn" inverseName="yarnWeight" inverseEntity="Yarn"/>
     </entity>
 </model>

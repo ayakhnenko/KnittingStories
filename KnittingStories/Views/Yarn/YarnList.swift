@@ -6,37 +6,62 @@
 //
 
 import SwiftUI
+import CoreData
 
 struct YarnList: View {
     
-    @Environment(\.managedObjectContext) var moc
-    @FetchRequest(sortDescriptors: [SortDescriptor(\.date, order: .reverse)], predicate: NSPredicate(format: "isArchived == false")) var yarn: FetchedResults<Yarn>
-  
     
+    @Environment(\.managedObjectContext) var viewContext
+    @ObservedObject var vm: YarnListViewModel
     @State private var showingAddYarn = false
+    @StateObject private var storage = NavigationStorage.shared
+    
+    
+   init(vm: YarnListViewModel) {
+        self.vm = vm
+  }
+
+    private func deleteYarn(at offsets: IndexSet) {
+        offsets.forEach { index in
+            let yarn = vm.yarns[index]
+            vm.deleteYarn(yarnId: yarn.id)
+        }
+    }
     
     var body: some View {
-        
-        NavigationView {
-            VStack {
-        List {
-            ForEach(yarn) { yarn in
-                NavigationLink(destination: YarnView(yarn: yarn)) {
-                    HStack {
-                        Image(uiImage: UIImage(data: yarn.image!)!)
-                            .smallCircle
-                       
-                        Text(yarn.wrappedName)
-                        Spacer()
-                        Text(" - \(yarn.calcCurrentWeight())г")
+    
+        NavigationStack(path: $storage.path) {
+            List {
+                Section {
+                    ForEach(vm.arrayYears, id: \.self) { year in
+                        Text("\(year) рік")
+                        ForEach(vm.yarnInStock, id: \.self) { yarn in
+                            if yarn.date.dateYear() == year {
+                                Button {
+                                    vm.selectModelIntent(yarn: yarn)
+                                } label: {
+                                    HStack {
+                                        Image(uiImage: yarn.image)
+                                            .smallCircle
+                                        VStack {
+                                            Text(yarn.name)
+                                            Text(yarn.date.dateFormatter())
+                                        }
+                                        Spacer()
+                                        Text(yarn.currentWeight.roundToPlaces())
+                                    }
+                                }
+                            }
+                            
+                        }.onDelete(perform: deleteYarn)
                     }
                 }
-                
-            }
-            .onDelete(perform: deleteYarn)
-            
         }.listStyle(.plain)
-            }
+            .navigationDestination(for: YarnModel.self) { [weak vm] yarn in
+                    if let detailYarnViewModel = vm?.detailYarnViewModel {
+                        YarnView(vm: detailYarnViewModel)
+                    }
+                }
             .navigationTitle("Пряжа")
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
@@ -51,25 +76,11 @@ struct YarnList: View {
                 }
             }
             .sheet(isPresented: $showingAddYarn) {
-                AddYarnView()
+                AddYarnView(vm: DetailYarnViewModel(context: viewContext, parent: self.vm))
+                
             }
-    }
-        .navigationViewStyle(.stack)
-        
-       
-}
-    
-    private func deleteYarn(offsets: IndexSet) {
-        withAnimation {
-            offsets.map { yarn[$0] }.forEach(moc.delete)
-            DataController().save(context: moc)
+            .navigationViewStyle(.stack)
         }
     }
 }
 
-
-struct YarnList_Previews: PreviewProvider {
-    static var previews: some View {
-        YarnList()
-    }
-}

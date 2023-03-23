@@ -9,60 +9,61 @@ import SwiftUI
 
 struct SoldProjectListView: View {
     
-   @Environment(\.managedObjectContext) var moc
-   @FetchRequest(sortDescriptors: [SortDescriptor(\.finishDate, order: .reverse)], predicate: NSPredicate(format: "sold == true")) var projects: FetchedResults<Project>
-                                   
-    @State private var showingAddProject = false
-    @State private var image = UIImage(imageLiteralResourceName: "llama")
-                                    
+    @Environment(\.managedObjectContext) var viewContext
+    @StateObject private var storage = NavigationStorage.shared
+    @ObservedObject var vm: ProjectListViewModel
+    
+    
+    init(vm: ProjectListViewModel) {
+        self.vm = vm
+    }
     var body: some View {
-        NavigationView {
-            VStack {
-                List {
-                    ForEach(projects) { project in
-                        NavigationLink {
-                            ProjectView(project: project)
+        NavigationStack(path: $storage.path) {
+            
+            List {
+                Section {
+                    ForEach(vm.arrayYears, id: \.self) { year in
+                        Text("\(year) рік")
+                        ForEach(vm.sold, id: \.self) { project in
+                            if project.saleDate.dateYear() == year {
+                                Button {
+                                    vm.selectModelIntent(project: project)
+                                }
+                            label: {
+                                HStack {
+                                    Image(uiImage: project.image)
+                                        .smallProjPhoto
+                                    VStack {
+                                        Text(project.name).bold()
+                                        Text("\(project.saleCost.roundToPlaces()) грн")
+                                    }
+                                    
+                                    Text(project.saleDate.dateFormatter())
+                                }
+                            }
+                            }
                         }
-                    label: {
-                        HStack {
-                            Image(uiImage: UIImage(data: project.image!) ?? UIImage(imageLiteralResourceName: "llama"))
-                                .smallCircle
-                            
-                            Text("\(project.wrappedName)")
-                        }
-                        
                     }
-                    }
-                    .onDelete(perform: deleteProject)
-                }.listStyle(.plain)
-            }
-            .navigationTitle("Вироби")
-            .toolbar {
-                ToolbarItem(placement: .navigationBarLeading) {
-                    EditButton()
                 }
-            }
-            .sheet(isPresented: $showingAddProject) {
-                AddProjectView()
-            }
+            }.listStyle(.plain)
+                .navigationDestination(for: ProjectModel.self) {
+                    [weak vm] project in
+                    if let detailProjectViewModel = vm?.detailProjectViewModel {
+                        ProjectView(vm: detailProjectViewModel)
+                    }
+                }
+                .navigationTitle("Продані вироби")
+            //            .toolbar {
+            //                ToolbarItem(placement: .navigationBarLeading) {
+            //                    EditButton()
+            //                }
+            //            }
+            //            .sheet(isPresented: $showingAddProject) {
+            //                AddProjectView()
+            //            }
         }
         .navigationViewStyle(.stack)
         
     }
-                                    
-                                    
-    private func deleteProject(offsets: IndexSet) {
-        withAnimation {
-            offsets.map { projects[$0] }.forEach(moc.delete)
-            DataController().save(context: moc)
-        }
-    }
-                                    
-                                    }
-                                    
-                                    
-    struct SoldProjectListView_Previews: PreviewProvider {
-        static var previews: some View {
-            SoldProjectListView()
-        }
-    }
+    
+}

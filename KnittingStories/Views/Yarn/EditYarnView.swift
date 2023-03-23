@@ -9,51 +9,36 @@ import SwiftUI
 
 struct EditYarnView: View {
     
-    @Environment(\.managedObjectContext) var moc
+    @ObservedObject var vm: DetailYarnViewModel
+    
+    init(vm: DetailYarnViewModel) {
+        self.vm = vm
+
+    }
+    @Environment(\.managedObjectContext) var viewContext
     @Environment(\.dismiss) var dismiss
-    
-    var yarn: FetchedResults<Yarn>.Element
-    
-    
-    @State private var name: String = ""
-    @State private var image = UIImage(imageLiteralResourceName: "sheep")
-    @State private var date = Date()
-    @State private var compound: String = ""
-    @State private var footagePer100g: Double = 0
-    @State private var originalWeight: Double = 1
-    @State private var shop: String = ""
-    @State private var deliveryPrice: Double = 0
-    @State private var color: String = ""
-    @State private var id = UUID()
-    @State private var pricePer100g: Double = 1
     @State private var imagePicker = false
-    @State private var currentWeight: Double = 0
-    @State private var isArchived = false
-    
- 
+  
     
     var body: some View {
-        NavigationView {
+      
             Form {
                 Section {
                     HStack {
-                        Image(uiImage: UIImage(data: yarn.image!)!)
+                        Image(uiImage: vm.image)
                             .bigCircle
                             .onAppear {
-                                image = UIImage(data: yarn.image!)!
+                                vm.image = vm.yarn!.image
                             }
-                            .sheet(isPresented: $imagePicker) {
-                                ImagePickerView(selectedImage: $image)
-                            }
-                        Button {
+                         Button {
                             imagePicker.toggle()
                         } label: {
                             Text("Змінити світлину")
                         }.sheet(isPresented: $imagePicker) {
-                            ImagePickerView(selectedImage: $image)
+                            ImagePickerView(selectedImage: $vm.image)
                         }
                     }
-                }
+                }.padding()
                 Section {
                     VStack {
                         Text("Загальні параметри")
@@ -61,27 +46,28 @@ struct EditYarnView: View {
                             .foregroundColor(.indigo)
                         HStack {
                             Text("Назва:")
-                            TextField("\(yarn.wrappedName)", text: $name)
+                            TextField(vm.yarn!.name, text: $vm.name)
                                 .onAppear {
-                                    name = yarn.wrappedName
+                                    vm.name = vm.yarn!.name
                                 }
+                                
                         }
                         .padding(.horizontal, 6)
                         .textFieldStyle(.roundedBorder)
                         HStack {
                             Text("Склад:")
-                            TextField("\(yarn.compound!)", text: $compound)
+                            TextField(vm.yarn!.compound, text: $vm.compound)
                                 .onAppear {
-                                    compound = yarn.compound!
+                                    vm.compound = vm.yarn!.compound
                                 }
                         }
                         .padding(.horizontal, 6)
                         .textFieldStyle(.roundedBorder)
                         HStack {
                             Text("Колір:")
-                            TextField("\(yarn.color!)", text: $color)
+                            TextField(vm.yarn!.color, text: $vm.color)
                                 .onAppear {
-                                    color = yarn.color!
+                                    vm.color = vm.yarn!.color
                                 }
                         }
                         .padding(.horizontal, 6)
@@ -95,30 +81,34 @@ struct EditYarnView: View {
                             .foregroundColor(.indigo)
                         HStack {
                             Text("Загальна вага:")
-                            TextField("\(yarn.originalWeight)", value: $originalWeight, formatter: NumberFormatter())
+                            TextField(String(vm.yarn!.originalWeight), value: $vm.originalWeight, formatter: NumberFormatter())
                                 .onAppear {
-                                    originalWeight = yarn.originalWeight
+                                    vm.originalWeight = vm.yarn!.originalWeight
                                 }.keyboardType(.numberPad)
                         }
-                        .padding(.horizontal, 6)
+                        
                         .textFieldStyle(.roundedBorder)
-                        Text("Поточна вага: \(currentWeight)")
+                        HStack {
+                            Text("Поточна вага: \(vm.currentWeight)")
+                            Spacer()
+                        }
+                        
                         HStack {
                             Text("Метрів в 100г:")
-                            TextField("\(yarn.footagePer100g)", value: $footagePer100g, formatter: NumberFormatter())
+                            TextField("\(vm.yarn!.footagePer100g)", value: $vm.footagePer100g, formatter: NumberFormatter())
                                 .keyboardType(.numberPad)
                                 .onAppear {
-                                    footagePer100g = yarn.footagePer100g
+                                    vm.footagePer100g = vm.yarn!.footagePer100g
                                 }
                         }
                         .padding(.horizontal, 6)
                         .textFieldStyle(.roundedBorder)
                         HStack {
                             Text("Ціна за 100г:")
-                            TextField("\(yarn.pricePer100g)", value: $pricePer100g, formatter: NumberFormatter())
+                            TextField(String(vm.yarn!.pricePer100g), value: $vm.pricePer100g, formatter: NumberFormatter())
                                 .keyboardType(.numberPad)
                                 .onAppear {
-                                    pricePer100g = yarn.pricePer100g
+                                    vm.pricePer100g = vm.yarn!.pricePer100g
                                 }
                         }
                         .padding(.horizontal, 6)
@@ -133,18 +123,17 @@ struct EditYarnView: View {
                         
                         HStack {
                             Text("Крамниця:")
-                            TextField("\(yarn.shop!)", text: $shop)
-                            
+                            TextField(vm.yarn!.shop, text: $vm.shop)
                                 .onAppear {
-                                    shop = yarn.shop!
+                                    vm.shop = vm.yarn!.shop
                                 }
                         }
                         .padding(.horizontal, 6)
                         .textFieldStyle(.roundedBorder)
-                        DatePicker("Дата:", selection: $date, displayedComponents: [.date])
+                        DatePicker("Дата:", selection: $vm.date, displayedComponents: [.date])
                             .padding(.horizontal, 6)
                             .onAppear {
-                                date = yarn.date!
+                                vm.date = vm.yarn!.date
                             }
                     }
                 }
@@ -153,66 +142,70 @@ struct EditYarnView: View {
                         Text("Параметри для розрахунків")
                             .bold()
                             .foregroundColor(.indigo)
-                        VStack(alignment: .leading) {
+                        VStack {
                             HStack {
                                 Text("Доставка, (грн):")
-                                TextField("\(yarn.deliveryPrice)", value: $deliveryPrice, formatter: NumberFormatter())
+                                TextField(String(vm.yarn!.deliveryPrice), value: $vm.deliveryPrice, formatter: NumberFormatter())
                                     .keyboardType(.numberPad)
                                     .onAppear {
-                                        deliveryPrice = yarn.deliveryPrice
+                                        vm.deliveryPrice = vm.yarn!.deliveryPrice
                                     }
                             }
-                            .padding(.horizontal, 6)
                             .textFieldStyle(.roundedBorder)
-                            Text("Ціна за 1г,(грн): \(yarn.pricePer1g)")
-                            Text("Загальні витрати,(грн): \(yarn.totalExpense)")
-                                .bold()
-                                .foregroundColor(.purple)
+                            HStack {
+                                Text("Ціна за 1г,(грн): \(vm.yarn!.yarn.pricePer1g)")
+                                Spacer()
+                            }.padding()
+                            
+                            HStack {
+                                Text("Загальні витрати,(грн): \(vm.yarn!.yarn.totalExpense)")
+                                    .bold()
+                                    .foregroundColor(.purple)
+                                Spacer()
+                            }
+                            
                         }
                     }
                 }
                 Section {
-                    Toggle("Перенести пряжу до архиву?", isOn: $isArchived)
+                    Toggle("Перенести пряжу до архиву?", isOn: $vm.isArchived)
                         .onAppear {
-                            isArchived = yarn.isArchived
+                            vm.isArchived = vm.yarn!.isArchived
                         }
                   
                 }
+                
                 Section {
                     VStack {
                         Text("Вироби")
                             .bold()
-                            .foregroundColor(.indigo)
+                            .foregroundColor(.purple)
                             .padding()
                         List {
-                            ForEach(yarn.yarnWeightArray) { yarnProj in
-                                NavigationLink(destination: ProjectView(project: yarnProj.fromProj!)) {
+                            ForEach(vm.yarn!.yarn.yarnWeightArray) { yarnProj in
+                                HStack {
                                     Image(uiImage: UIImage(data: (yarnProj.fromProj?.image)!) ?? UIImage(imageLiteralResourceName: "sheep"))
-                                        .smallCircle
-                                        .onAppear {
-                                            image = UIImage(data: yarnProj.fromProj!.image!)!
-                                        }
-                                    Text("\(yarnProj.fromProj?.name ?? "") - \(yarnProj.yarnWeightInProj)г")
-
+                                        .smallProjPhoto
+                                    Text((yarnProj.fromProj?.name)!)
+                                    Text("\(yarnProj.yarnWeightInProj) г")
                                 }
                             }
+                            }
                         }
-                        
                     }
-                }
-                
+
 
                 HStack {
                     Spacer()
                     Button("Зберегти") {
-                        DataController().editYarn(yarn: yarn, name: name, image: image, compound: compound, footagePer100g: footagePer100g, pricePer100g: pricePer100g, deliveryPrice: deliveryPrice, color: color, shop: shop, date: date, originalWeight: originalWeight, isArchived: isArchived, context: moc)
-                        dismiss()
+                        
+                        vm.editYarn(yarn: vm.yarn!.yarn, name: vm.name, image: vm.image, compound: vm.compound, footagePer100g: vm.footagePer100g, pricePer100g: vm.pricePer100g, deliveryPrice: vm.deliveryPrice, color: vm.color, shop: vm.shop, date: vm.date, originalWeight: vm.originalWeight, isArchived: vm.isArchived)
+                        self.dismiss()
+               
                     }
                     .buttonModif
                     Spacer()
                 }
-            }
-            
         }
     }
 }

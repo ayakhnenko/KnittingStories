@@ -8,133 +8,97 @@
 import SwiftUI
 
  struct ProjectView: View {
-    @Environment(\.managedObjectContext) var moc
+    @Environment(\.managedObjectContext) var viewContext
     @Environment(\.dismiss) var dismiss
-    
-    @State private var additExpense: Double = 0
-    @State private var comission: Double = 0
-    @State private var comments: String = ""
-    @State private var deliveryCost: Double = 0
-    @State private var finishDate = Date()
-    @State private var forSale: Bool = false
-    @State private var id = UUID()
-    @State private var image = UIImage(imageLiteralResourceName: "llama")
-    @State private var marketplace: String = ""
-    @State private var name: String = ""
-    @State private var needlesNumber: Int16 = 0
-    @State private var saleDate = Date()
-    @State private var size: String = ""
-    @State private var startDate = Date()
-    @State private var totalWeight: Double = 0
-    @State private var yarnWeight: Double = 0
-    @State private var saleCost: Double = 0
-    @State private var margin: Double = 0
-    @State private var imagePicker = false
-    @State private var sold: Bool = false
-    @State public var yarnForProject = [YarnProj]()
-    @State private var showEditProject = false
-    @State private var yarnWeightInProject: Double = 0
-    @State private var yarnProj: YarnProj?
-    
-var project: FetchedResults<Project>.Element
+     @StateObject private var storage = NavigationStorage.shared
+     @ObservedObject var vm: DetailProjectViewModel
      
-//     @FetchRequest(sortDescriptors: [NSSortDescriptor(keyPath: \YarnProj.fromProj , ascending: true)], animation: .default) private var yarnsForProject: FetchedResults<YarnProj>
+     @State private var showingEditProject = false
      
-   
+     init(vm: DetailProjectViewModel) {
+         self.vm = vm
+     }
 
     var body: some View {
-        NavigationView {
             Form {
-                Section {
-                    VStack(alignment: .leading) {
-                        Image(uiImage: UIImage(data: project.image!)!)
-                            .bigCircle
-                            .onAppear {
-                                image = UIImage(data: project.image!)!
-                            }
-                    }
+                HStack {
+                    Spacer()
+                    Image(uiImage: vm.project!.image)
+                        .bigProjPhoto
+                        .onAppear {
+                            vm.image =  vm.project!.image
+                            //vm.dismiss()
+                        }
+                    Spacer()
                 }
                 Section {
                     Text("Загальні параметри")
                         .bold()
                         .foregroundColor(.blue)
-                    Text("Назва: \(project.wrappedName)")
-                    Text("Загальна вага,(г): \(project.totalWeight)")
-                    DatePicker("Початок:", selection: $startDate, displayedComponents: [.date])
-                        .padding(.horizontal, 6)
+                    Text("Назва: \(vm.project!.name)")
+                    Text("Загальна вага,(г): \(vm.project!.totalWeight.roundToPlaces())")
+                    Text("Початок: \(vm.startDate.dateFormatter())")
                         .onAppear {
-                            startDate = project.startDate ?? Date()
+                            vm.startDate = vm.project!.startDate
                         }
-                    DatePicker("Кінець:", selection: $finishDate, displayedComponents: [.date])
-                        .padding(.horizontal, 6)
+                    Text("Кінець: \(vm.finishDate.dateFormatter())")
                         .onAppear {
-                            finishDate = project.finishDate ?? Date()
+                            vm.finishDate = vm.project!.finishDate
                         }
-                    Text("Розмір виробу: \(project.size ?? "")")
-                    Text("Розмір спиць: \(project.needlesNumber)")
+                    Text("Розмір виробу: \(vm.project!.size)")
+                    Text("Розмір спиць: \(vm.project!.needlesNumber)")
+                    Text("Собівартість виробу,(грн): \(vm.project!.project.cost.roundToPlaces())")
                     
                 }
                 Section {
                     Text("Пряжа")
                         .bold()
-                        .foregroundColor(.blue)
+                        .foregroundColor(.mint)
                     List {
-                        VStack {
-                            ForEach(project.yarnForProjectArray) { yarnProj in
-                                NavigationLink(destination: YarnView(yarn: yarnProj.fromYarn!)) {
-                                    HStack {
-                                        Image(uiImage: UIImage(data: yarnProj.fromYarn!.image!)!)
-                                            .smallCircle
-                                            .onAppear {
-                                                image = UIImage(data: yarnProj.fromYarn!.image!)!
-                                            }
-                                        Text("\(yarnProj.fromYarn?.name ?? "") -\(yarnProj.yarnWeightInProj) г")
-                                            .onAppear {
-                                                name = yarnProj.fromYarn?.name ?? ""
-                                                yarnWeightInProject = yarnWeightInProject
-                                            }
-                                    }
-                                }
-                                //                            }.onAppear {
-                                //                                yarnForProject = project.yarnForProjectArray
+                        ForEach(vm.project!.project.yarnForProjectArray) { yarnProj in
+                            HStack {
+                                Image(uiImage: UIImage(data: (yarnProj.fromYarn!.image)!) ?? UIImage(imageLiteralResourceName: "llama"))
+                                    .smallCircle
+                                Text(yarnProj.fromYarn!.name!)
+                                Text("\(yarnProj.yarnWeightInProj.roundToPlaces()) г")
                             }
+                            
                         }
                     }
                 }
-                if project.forSale {
+                if vm.project!.project.forSale {
                     Text("На продаж")
                 }
-                if project.sold {
+                if vm.project!.project.sold {
                     Section {
                         Text("Параметри для продажу")
                             .bold()
                             .foregroundColor(.blue)
-                        Text("Маркетплейс: \(project.marketplace ?? "")")
-                        Text("Комісія,(грн): \(project.comission)")
-                        DatePicker("Дата продажу:", selection: $saleDate, displayedComponents: [.date])
-                            .padding(.horizontal, 6)
+                        Text("Маркетплейс: \(vm.project!.project.marketplace ?? "")")
+                        Text("Комісія,(грн): \(vm.project!.project.comission.roundToPlaces())")
+                        Text("Дата продажу: \(vm.saleDate.dateFormatter())")
                             .onAppear {
-                                saleDate = project.saleDate ?? Date()
+                                vm.saleDate = vm.project!.project.saleDate ?? Date()
                             }
-                        Text("Собівартість виробу,(грн): \(project.cost)")
-                        Text("Вартість доставки,(грн): \(project.deliveryCost)")
-                        Text("Загальні витрати,(грн): \(project.additExpense)")
-                        Text("Прибуток,(грн): \(project.margin)")
-                        
-                    }
+                        Text("Вартість доставки,(грн): \(vm.project!.project.deliveryCost.roundToPlaces())")
+                        Text("Загальні витрати,(грн): \(vm.project!.project.additExpense.roundToPlaces())")
+                        Text("Ціна виробу: \(vm.project!.project.saleCost.roundToPlaces())")
+                        Text("Прибуток,(грн): \(vm.project!.project.margin.roundToPlaces())")
+                   }
                 }
-                
-            }
         }.toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    Button { showEditProject.toggle()
+                    Button {
+                        showingEditProject.toggle()
                     } label: {
                         Text("Edit")
                     }
                 }
-            }.sheet(isPresented: $showEditProject) {
-                EditProjectView(project: project)
-            }
+            
+        }.sheet(isPresented: $showingEditProject) {
+            EditProjectView(vm: self.vm)
+                                
+        }
         }
     }
 

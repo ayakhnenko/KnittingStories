@@ -10,88 +10,71 @@ import SwiftUI
 
 struct YarnView: View {
     
-    @Environment(\.managedObjectContext) var moc
+    @Environment(\.managedObjectContext) var viewContext
     @Environment(\.dismiss) var dismiss
-
-    var yarn: FetchedResults<Yarn>.Element
-
-
-    @State private var name: String = ""
-    @State private var image = UIImage(imageLiteralResourceName: "sheep")
-    @State private var date = Date()
-    @State private var compound: String = ""
-    @State private var footagePer100g: Double = 0
-    @State private var originalWeight: Double = 1
-    @State private var shop: String = ""
-    @State private var deliveryPrice: Double = 0
-    @State private var color: String = ""
-    @State private var id = UUID()
-    @State private var pricePer100g: Double = 1
-    @State private var isArchived = false
-
-    @State private var showEditYarn = false
-   
-    @State private var yarnProj: YarnProj?
-   // @State private var yarnWeightInProject: Double = 0
-   
+    
+    private let storage = NavigationStorage.shared
+    @State private var showingEditYarn = false
+    @ObservedObject var vm: DetailYarnViewModel
+    
+    init(vm: DetailYarnViewModel) {
+        self.vm = vm
+    }
+    
+  
     var body: some View {
-        NavigationView {
             Form {
-                Image(uiImage: UIImage(data: yarn.image!)!)
-                    .bigCircle
-                    .onAppear {
-                        image = UIImage(data: yarn.image!)!
-                    }
+                HStack {
+                    Spacer()
+                    Image(uiImage: vm.yarn!.image)
+                        .bigCircle
+                        .onAppear {
+                            vm.image = vm.yarn!.image
+                            vm.dismiss()
+                        }
+                    Spacer()
+                }
                 Section {
                     Text("Загальні параметри")
                         .bold()
                         .foregroundColor(.purple)
                         .padding()
-                    Text("Назва: \(yarn.wrappedName)")
-                    Text("Склад: \(yarn.compound ?? "")")
-                    Text("Колір: \(yarn.color ?? "")")
+                    Text("Назва: \(vm.yarn!.yarn.wrappedName)")
+                    Text("Склад: \(vm.yarn!.compound)")
+                    Text("Колір: \(vm.yarn!.color)")
                 }
                 Section {
                     Text("Вимірювальні параметри")
                         .bold()
                         .foregroundColor(.purple)
                         .padding()
-                    Text("Початкова вага,(г) : \(yarn.originalWeight)")
-                    Text("Метрів у 100г: \(yarn.footagePer100g)")
-                    Text("Поточная вага,(г): \(yarn.calcCurrentWeight())")
+                    Text("Початкова вага,(г) : \(vm.yarn!.originalWeight.roundToPlaces())")
+                    Text("Метрів у 100г: \(vm.yarn!.footagePer100g.roundToPlaces())")
+                    Text("Поточная вага,(г): \(vm.yarn!.yarn.calcCurrentWeight().roundToPlaces())")
                 }
                 Section {
-                    VStack(alignment: .leading) {
                         Text("Деталі придбання")
                             .bold()
                             .foregroundColor(.purple)
                             .padding()
-                        Text("Крамниця: \(yarn.shop ?? "")")
-                        DatePicker("Дата:", selection: $date, displayedComponents: [.date])
-                            .padding(.horizontal, 6)
-                            .onAppear {
-                                date = yarn.date!
-                            }
-                    }
+                        Text("Крамниця: \(vm.yarn!.shop)")
+                        
+                    Text("Дата: \(vm.yarn!.date.dateFormatter())")
+//                            .onAppear {
+//                                yarnVM.date = yarnVM.yarn!.date
+//                            }
                 }
                 Section {
                     Text("Параметри для розрахунків")
                         .bold()
                         .foregroundColor(.purple)
                         .padding()
-                    Text("Доставка, (грн): \(yarn.deliveryPrice)")
-                    Text("Ціна за 100г: \(yarn.pricePer100g)")
-                    Text("Загальні витрати, (грн) : \(yarn.totalExpense)")
-                    Text("Ціна за 1г, (грн): \(yarn.pricePer1g)")
-                    
+                    Text("Доставка, (грн): \(vm.yarn!.deliveryPrice.roundToPlaces())")
+                    Text("Ціна за 100г: \(vm.yarn!.pricePer100g.roundToPlaces())")
+                    Text("Загальні витрати, (грн) : \(vm.yarn!.yarn.totalExpense.roundToPlaces())")
+                    Text("Ціна за 1г, (грн): \(vm.yarn!.yarn.pricePer1g.roundToPlaces())")
                 }
-                Section {
-                    Toggle("Перенести пряжу до архиву?", isOn: $isArchived)
-                        .onAppear {
-                            isArchived = yarn.isArchived
-                        }
-                  
-                }
+                
                 Section {
                     VStack {
                         Text("Вироби")
@@ -99,32 +82,39 @@ struct YarnView: View {
                             .foregroundColor(.purple)
                             .padding()
                         List {
-                            ForEach(yarn.yarnWeightArray) { yarnProj in
-                                NavigationLink(destination: ProjectView(project: yarnProj.fromProj!)) {
+                            ForEach(vm.yarn!.yarn.yarnWeightArray) { yarnProj in
+                                HStack {
                                     Image(uiImage: UIImage(data: (yarnProj.fromProj?.image)!) ?? UIImage(imageLiteralResourceName: "sheep"))
-                                        .smallCircle
-                                        .onAppear {
-                                            image = UIImage(data: yarnProj.fromProj!.image!)!
-                                        }
-                                    Text("\(yarnProj.fromProj?.name ?? "") - \(yarnProj.yarnWeightInProj)г")
+                                        .smallProjPhoto
+                                    Text((yarnProj.fromProj?.name)!)
+                                    Text("\(yarnProj.yarnWeightInProj.roundToPlaces()) г")
                                 }
+                                
                             }
                         }
-                        
                     }
+            
                 }
+          
             }
-        }.toolbar {
-            ToolbarItem(placement: .navigationBarTrailing) {
-                Button { showEditYarn.toggle()
-                } label: {
-                    Text("Edit")
-                }
+ 
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button {
+                        showingEditYarn.toggle()
+
+                    } label: {
+                        Text("Edit")
+                    }
+                    }
+            }.sheet(isPresented: $showingEditYarn) {
+                EditYarnView(vm: self.vm)
+                                
             }
-        }.sheet(isPresented: $showEditYarn) {
-            EditYarnView(yarn: yarn)
         }
     }
-}
+    
+    
+
 
 

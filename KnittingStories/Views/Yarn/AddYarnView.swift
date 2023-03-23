@@ -4,29 +4,20 @@
 //
 //  Created by Alisa Yakhnenko on 11.10.2022.
 //
-import PhotosUI
+
 import SwiftUI
 
 
 
 struct AddYarnView: View {
     
-    @Environment(\.managedObjectContext) var moc
+    @ObservedObject var vm: DetailYarnViewModel
+    
+    init(vm: DetailYarnViewModel) {
+        self.vm = vm
+    }
+
     @Environment(\.dismiss) var dismiss
-    
-    @State private var name: String = ""
-    @State private var image = UIImage(imageLiteralResourceName: "sheep")
-    @State private var date = Date()
-    @State private var compound: String = ""
-    @State private var footagePer100g: Double = 0
-    @State private var originalWeight: Double = 1
-    @State private var shop: String = ""
-    @State private var deliveryPrice: Double = 0
-    @State private var color: String = ""
-    @State private var id = UUID()
-    @State private var pricePer100g: Double = 1
-    @State private var isArchived = false
-    
     @State private var imagePicker = false
    
     
@@ -34,7 +25,7 @@ struct AddYarnView: View {
             Form {
                 Section {
                     HStack {
-                        Image(uiImage: image)
+                        Image(uiImage: vm.image)
                             .bigCircle
 
                         Button(action: {
@@ -43,7 +34,7 @@ struct AddYarnView: View {
                             Text("Додати світлину")
                         })
                         .sheet(isPresented: $imagePicker) {
-                            ImagePickerView(selectedImage: $image)
+                            ImagePickerView(selectedImage: $vm.image)
                         }
                     }
                 }
@@ -54,19 +45,19 @@ struct AddYarnView: View {
                             .foregroundColor(.indigo)
                         HStack {
                             Text("Назва:")
-                            TextField("Name", text: $name)
+                            TextField("Name", text: $vm.name)
                         }
                         .padding()
                         .textFieldStyle(.roundedBorder)
                         HStack {
                             Text("Склад:")
-                            TextField("Compound", text: $compound)
+                            TextEditor(text: $vm.compound)
                         }
                         .padding()
                         .textFieldStyle(.roundedBorder)
                         HStack {
                             Text("Колір:")
-                            TextField("Color", text: $color)
+                            TextField("Color", text: $vm.color)
                         }
                         .padding()
                         .textFieldStyle(.roundedBorder)
@@ -79,7 +70,7 @@ struct AddYarnView: View {
                             .foregroundColor(.indigo)
                         HStack {
                             Text("Початкова вага, (г):")
-                            TextField("", value: $originalWeight, formatter: NumberFormatter())
+                            TextField("", value: $vm.originalWeight, formatter: NumberFormatter())
                                 .keyboardType(.numberPad)
                         }
                         .padding()
@@ -87,14 +78,14 @@ struct AddYarnView: View {
                         
                         HStack {
                             Text("Метрів у 100г:")
-                            TextField("Footage per 100g", value: $footagePer100g, formatter: NumberFormatter())
+                            TextField("Footage per 100g", value: $vm.footagePer100g, formatter: NumberFormatter())
                                 .keyboardType(.numberPad)
                         }
                         .padding()
                         .textFieldStyle(.roundedBorder)
                         HStack {
                             Text("Ціна за 100г,(грн):")
-                            TextField("Price per 100g", value: $pricePer100g, formatter: NumberFormatter())
+                            TextField("Price per 100g", value: $vm.pricePer100g, formatter: NumberFormatter())
                                 .keyboardType(.numberPad)
                         }
                         .padding()
@@ -108,15 +99,15 @@ struct AddYarnView: View {
                             .foregroundColor(.indigo)
                         HStack {
                             Text("Крамниця:")
-                            TextField("Shop", text: $shop)
+                            TextField("Shop", text: $vm.shop)
                         }
                         .padding()
                         .textFieldStyle(.roundedBorder)
-                        DatePicker("Дата:", selection: $date, displayedComponents: [.date])
+                        DatePicker("Дата:", selection: $vm.date, displayedComponents: [.date])
                             .padding()
                         HStack {
                             Text("Доставка, (грн):")
-                            TextField("Delivery cost", value: $deliveryPrice, formatter: NumberFormatter())
+                            TextField("Delivery cost", value: $vm.deliveryPrice, formatter: NumberFormatter())
                                 .keyboardType(.numberPad)
                         }
                         .padding()
@@ -124,14 +115,14 @@ struct AddYarnView: View {
                     }
                 }
                 Section {
-                    Toggle("Перенести пряжу до архиву?", isOn: $isArchived)
+                    Toggle("Перенести пряжу до архиву?", isOn: $vm.isArchived)
                   
                 }
                 HStack {
                     Spacer()
                     Button("Зберегти") {
-                        DataController().addYarn(name: name, image: image, compound: compound, footagePer100g: footagePer100g, pricePer100g: pricePer100g, deliveryPrice: deliveryPrice, color: color, shop: shop, date: date, originalWeight: originalWeight, isArchived: isArchived, context: moc)
-                        dismiss()
+                        vm.addYarn(name: vm.name, image: vm.image, compound: vm.compound, footagePer100g: vm.footagePer100g, pricePer100g: vm.pricePer100g, deliveryPrice: vm.deliveryPrice, color: vm.color, shop: vm.shop, date: vm.date, originalWeight: vm.originalWeight, isArchived: vm.isArchived)
+                        self.dismiss()
                     }
                     .buttonModif
                     Spacer()
@@ -139,10 +130,4 @@ struct AddYarnView: View {
             }
         }
     }
-
-struct AddYarnView_Previews: PreviewProvider {
-    static var previews: some View {
-        AddYarnView()
-    }
-}
 
